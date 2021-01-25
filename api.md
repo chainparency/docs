@@ -2,12 +2,16 @@
 
 ## URL
 
-Production: `GOTRACE_API=https://gotrace-api.gochain.io`
+Production: `GOTRACE_API=https://api.gotrace.world`
 
 ## Authorization
 
 Get your API TOKEN from the profile page (menu button on the top right)
-Add the following header to all of your requests - `Authorization:$API_TOKEN`
+Add the following header to all of your requests:
+
+```
+Authorization: Bearer $API_TOKEN
+```
 
 ## Assets
 
