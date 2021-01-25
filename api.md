@@ -20,7 +20,7 @@ Authorization: Bearer $API_TOKEN
 ```sh
 curl "$GOTRACE_API/v1/orgs/$ORG_ID/assets" \
   -H 'Content-Type: application/json' \
-  -H "Authorization:$API_TOKEN" \
+  -H "Authorization: Bearer $API_TOKEN" \
   --data-binary '{"name":"Octocat","org_id":"ORG_ID","is_container":true,"status":"active"}' \
 ```
 
@@ -49,7 +49,7 @@ curl "$GOTRACE_API/v1/orgs/$ORG_ID/assets" \
 ```sh
 curl "$GOTRACE_API/v1/orgs/$ORG_ID/assets" \
   -H 'Content-Type: application/json' \
-  -H "Authorization:$API_TOKEN" \
+  -H "Authorization: Bearer $API_TOKEN" \
 ```
 
 <details>
@@ -79,7 +79,7 @@ curl "$GOTRACE_API/v1/orgs/$ORG_ID/assets" \
 ```sh
 curl "$GOTRACE_API/v1/assets/$ASSET_ID" \
   -H 'Content-Type: application/json' \  
-  -H "Authorization:$API_TOKEN" \
+  -H "Authorization: Bearer $API_TOKEN" \
 ```
 
 <details>
@@ -109,7 +109,7 @@ curl "$GOTRACE_API/v1/assets/$ASSET_ID" \
 ```sh
 curl "$GOTRACE_API/v1/orgs/$ORG_ID/loads" \
   -H 'Content-Type: application/json' \
-  -H "Authorization:$API_TOKEN" \
+  -H "Authorization: Bearer $API_TOKEN" \
   --data-binary '{"name":"LOAD_NAME","org_id":"ORG_ID","parent_id":PARENT_ID,"asset":"ASSET_ID","source_load_ids":SOURCE_LOAD_IDS,"start_point":{"latitude":LATITUDE,"longitude":LONGITUDE}}'
 ```
 
@@ -151,7 +151,7 @@ curl "$GOTRACE_API/v1/orgs/$ORG_ID/loads" \
 ```sh
 curl "$GOTRACE_API/v1/orgs/$ORG_ID/loads" \
   -H 'Content-Type: application/json' \
-  -H "Authorization:$API_TOKEN" \
+  -H "Authorization: Bearer $API_TOKEN" \
 ```
 
 #### Query Parameters
@@ -171,7 +171,7 @@ multiple times on their own (up to 10).
 ```sh
 curl "$GOTRACE_API/v1/orgs/0pFkVHqMtoQK5tB6EiC8/loads?latest_org=true&include_hidden=true&created_after=2020-07-09T12%3A59%3A00.000Z&created_before=2020-07-17T12%3A59%3A00.000Z&asset_id=a4yYiOqJYZqsAOlCrOnc&public_traces=true" \
   -H 'Content-Type: application/json' \
-  -H "Authorization:$API_TOKEN" \
+  -H "Authorization: Bearer $API_TOKEN" \
 ```
 
 <details>
@@ -269,7 +269,7 @@ curl "$GOTRACE_API/v1/orgs/0pFkVHqMtoQK5tB6EiC8/loads?latest_org=true&include_hi
 ```sh
 curl "$GOTRACE_API/v1/loads/$LOAD_ID" \
   -H 'Content-Type: application/json' \
-  -H "Authorization:$API_TOKEN" \
+  -H "Authorization: Bearer $API_TOKEN" \
 ```
 
 <details>
@@ -311,7 +311,7 @@ curl "$GOTRACE_API/v1/loads/$LOAD_ID" \
 ```sh
 curl "$GOTRACE_API/v1/loads/$LOAD_ID/events" \
   -H 'Content-Type: application/json' \
-  -H "Authorization:$API_TOKEN" \
+  -H "Authorization: Bearer $API_TOKEN" \
   --data-binary '{"load_id":"2gcjqFd5pEVNwNhhH9u9","created_by":"p8Ov0RnOO9U1fVRJoa5R8JHcOLm1","org_id":"UEk2tZFKAF1LmkfzgbyA","type":"gps-start","geo_point":{"latitude":41.8781,"longitude":-87.6298}}'
 ```
 
@@ -413,7 +413,7 @@ one or more individual fields can be updated using dot notation (`data.*`).
 ```sh
 curl "$GOTRACE_API/v1/loads/$LOAD_ID/events" \
   -H 'Content-Type: application/json' \
-  -H "Authorization:$API_TOKEN" \
+  -H "Authorization: Bearer $API_TOKEN" \
 
 ```
 
@@ -532,7 +532,7 @@ curl "$GOTRACE_API/v1/loads/$LOAD_ID/events" \
 ```sh
 curl "$GOTRACE_API/v1/loads?barcode=$BARCODE" \
   -H 'Content-Type: application/json' \
-  -H "Authorization:$API_TOKEN"
+  -H "Authorization: Bearer $API_TOKEN"
 ```
 
 Example Response: see [GET Loads](#GET-Loads)
@@ -542,7 +542,7 @@ Example Response: see [GET Loads](#GET-Loads)
 ```sh
 curl "$GOTRACE_API/v1/loads/$LOAD_ID/hide" \
   -H 'Content-Type: application/json' \
-  -H "Authorization:$API_TOKEN"
+  -H "Authorization: Bearer $API_TOKEN"
   --data-binary '{"hidden":true}'
 ```
 
@@ -553,7 +553,7 @@ Example Response: see [GET Load by ID](#GET-Load-by-ID)
 ```sh
 curl "$GOTRACE_API/v1/loads/$LOAD_ID/supply_graph" \
   -H 'Content-Type: application/json' \
-  -H "Authorization:$API_TOKEN"
+  -H "Authorization: Bearer $API_TOKEN"
 ```  
 
 <details>
