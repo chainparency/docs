@@ -1,1 +1,3 @@
-# docs
+# Chainparency Documentation
+
+* [GoTrace API](api.md)
