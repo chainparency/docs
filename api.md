@@ -196,19 +196,6 @@ curl "$GOTRACE_API/v1/orgs/0pFkVHqMtoQK5tB6EiC8/loads?latest_org=true&include_hi
 
 ```json
 {
-  "assets": {
-    "LkiEUtJNndhbbz8qfFQW": {
-      "updated_at": "2020-07-15T15:40:08.105771Z",
-      "created_at": "2020-07-15T15:40:08.105771Z",
-      "id": "LkiEUtJNndhbbz8qfFQW",
-      "org_id": "eboThjQLWfAd79dvQ05O",
-      "deleted_at": null,
-      "name": "Named Asset",
-      "type": "",
-      "is_container": false,
-      "status": "active"
-    }
-  },
   "loads": [
     {
       "updated_at": "2020-07-15T15:44:27.009721Z",
@@ -235,48 +222,6 @@ curl "$GOTRACE_API/v1/orgs/0pFkVHqMtoQK5tB6EiC8/loads?latest_org=true&include_hi
       "last_committed_event_at": "2020-07-15T15:44:24.968239Z"
     }
   ],
-  "locations": {
-    "5peH6IvKncoDZMVLEleK": {
-      "updated_at": "2020-04-15T17:39:50.38664Z",
-      "created_at": "2020-04-15T17:39:50.38664Z",
-      "id": "5peH6IvKncoDZMVLEleK",
-      "org_id": "UEk2tZFKAF1LmkfzgbyA",
-      "deleted_at": null,
-      "name": "Gotham",
-      "status": "",
-      "address": "13 Wayne Pl.",
-      "lat": 41.8781,
-      "lon": -87.6298,
-      "geo": "dp3wjztvtetj",
-      "radius": 10,
-      "fuzzy": null
-    }
-  },
-  "orgs": {
-    "eboThjQLWfAd79dvQ05O": {
-      "updated_at": "2020-06-24T02:18:08.86463Z",
-      "created_at": "2020-06-24T02:18:08.864629Z",
-      "id": "eboThjQLWfAd79dvQ05O",
-      "deleted_at": null,
-      "name": "test",
-      "logo": "https://cdn.pixabay.com/photo/2017/01/31/23/42/animal-2028258_960_720.png",
-      "status": ""
-    }
-  },
-  "users": {
-    "p8Ov0RnOO9U1fVRJoa5R8JHcOLm1": {
-      "updated_at": "2020-07-13T23:15:18.97574Z",
-      "created_at": "2020-04-16T15:42:32.988143Z",
-      "id": "p8Ov0RnOO9U1fVRJoa5R8JHcOLm1",
-      "deleted_at": null,
-      "email": "jkrage@gochain.io",
-      "name": "Jordan Krage",
-      "picture": "https://lh3.googleusercontent.com/a-/AOh14Ggut8II3imZgCI1vjMTsxjVi5glJbpytSxd7i7G=s96-c",
-      "status": "",
-      "role": "",
-      "quickstart": false
-    }
-  }
 }
 ```
 </details>
