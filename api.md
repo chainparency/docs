@@ -2,7 +2,7 @@
 
 ## URL
 
-Production: `GOTRACE_API=https://api.gotrace.world`
+Production: `GOTRACE_API=https://gotrace-api.chainparency.com`
 
 ## Authorization
 
