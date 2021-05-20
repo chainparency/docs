@@ -1243,7 +1243,7 @@ curl "$GOTRACE_API/v1/locations/$LOCATION_ID" \
     
 ```json
 {
-  "location": {
+  "loc": {
     "updated_at": "2021-05-20T20:36:46.576967Z",
     "created_at": "2021-05-19T12:43:31.255573Z",
     "id": "eUHZAR5rMeCcnpRZXgN8",
