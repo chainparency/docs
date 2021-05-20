@@ -1243,76 +1243,78 @@ curl "$GOTRACE_API/v1/locations/$LOCATION_ID" \
     
 ```json
 {
-  "updated_at": "2021-05-20T20:36:46.576967Z",
-  "created_at": "2021-05-19T12:43:31.255573Z",
-  "id": "eUHZAR5rMeCcnpRZXgN8",
-  "org_id": "4OL3XCCtl0GfoEmN7iVz",
-  "hidden_at": null,
-  "name": "Test",
-  "status": "",
-  "address": "test",
-  "lat": 7,
-  "lon": 9,
-  "geo": "s1nruf39gnw6",
-  "radius": 1,
-  "fuzzy": null,
-  "type": {
-    "id": "kSjbZZXKG9XOLOyift3g",
-    "name": "Jordan's Tract and Stand Test",
-    "data_form": {
-      "id": "psD3Xhd8G17YwbAmfdi2",
-      "name": "Tract Demo"
-    },
-    "forms": [
-      {
-        "id": "pm4Hhey53nfw4hwFiShH",
-        "name": "Field Inspection Demo"
-      }
-    ]
-  },
-  "data": {
-    "comments": null,
-    "county": "C",
-    "fiber": null,
-    "gps-lat": null,
-    "gps-long": null,
-    "harvest_volume": null,
-    "landowner-name": null,
-    "landowner-type": null,
-    "longleaf_present": "no",
-    "longleaf_restoration": "yes",
-    "mill": null,
-    "name": "N",
-    "prev_tract_number": null,
-    "source_id": null,
-    "stand_data": [
-      {
-        "acreage": null,
-        "age_class": "11-20",
-        "forest_cover_type": "pine-no-hw",
-        "harvest_type": "selection",
-        "history": null,
-        "kept_forested": true,
-        "planted": "yes",
-        "preharvest_stocking": "under",
-        "regeneration": "planted-same",
-        "tons_to_enviva": null
+  "location": {
+    "updated_at": "2021-05-20T20:36:46.576967Z",
+    "created_at": "2021-05-19T12:43:31.255573Z",
+    "id": "eUHZAR5rMeCcnpRZXgN8",
+    "org_id": "4OL3XCCtl0GfoEmN7iVz",
+    "hidden_at": null,
+    "name": "Test",
+    "status": "",
+    "address": "test",
+    "lat": 7,
+    "lon": 9,
+    "geo": "s1nruf39gnw6",
+    "radius": 1,
+    "fuzzy": null,
+    "type": {
+      "id": "kSjbZZXKG9XOLOyift3g",
+      "name": "Jordan's Tract and Stand Test",
+      "data_form": {
+        "id": "psD3Xhd8G17YwbAmfdi2",
+        "name": "Tract Demo"
       },
-      {
-        "acreage": null,
-        "age_class": "11-20",
-        "forest_cover_type": "pine-with-hw",
-        "harvest_type": "preharest",
-        "history": null,
-        "kept_forested": true,
-        "planted": null,
-        "preharvest_stocking": "under",
-        "regeneration": "na",
-        "tons_to_enviva": null
-      }
-    ],
-    "stand_data_count": "2",
-    "state": "S"
+      "forms": [
+        {
+          "id": "pm4Hhey53nfw4hwFiShH",
+          "name": "Field Inspection Demo"
+        }
+      ]
+    },
+    "data": {
+      "comments": null,
+      "county": "C",
+      "fiber": null,
+      "gps-lat": null,
+      "gps-long": null,
+      "harvest_volume": null,
+      "landowner-name": null,
+      "landowner-type": null,
+      "longleaf_present": "no",
+      "longleaf_restoration": "yes",
+      "mill": null,
+      "name": "N",
+      "prev_tract_number": null,
+      "source_id": null,
+      "stand_data": [
+        {
+          "acreage": null,
+          "age_class": "11-20",
+          "forest_cover_type": "pine-no-hw",
+          "harvest_type": "selection",
+          "history": null,
+          "kept_forested": true,
+          "planted": "yes",
+          "preharvest_stocking": "under",
+          "regeneration": "planted-same",
+          "tons_to_enviva": null
+        },
+        {
+          "acreage": null,
+          "age_class": "11-20",
+          "forest_cover_type": "pine-with-hw",
+          "harvest_type": "preharest",
+          "history": null,
+          "kept_forested": true,
+          "planted": null,
+          "preharvest_stocking": "under",
+          "regeneration": "na",
+          "tons_to_enviva": null
+        }
+      ],
+      "stand_data_count": "2",
+      "state": "S"
+    }
   }
 }
 ```    
@@ -1333,410 +1335,412 @@ curl "$GOTRACE_API/v1/forms/$FORM_ID" \
 
 ```json
 {
-  "updated_at": "2021-05-19T12:19:58.3665Z",
-  "created_at": "2021-05-19T12:19:58.3665Z",
-  "id": "psD3Xhd8G17YwbAmfdi2",
-  "org_id": "4OL3XCCtl0GfoEmN7iVz",
-  "created_by": "p8Ov0RnOO9U1fVRJoa5R8JHcOLm1",
-  "name": "Tract Demo",
-  "fields": [
-    {
-      "name": "county",
-      "label": "Tract County",
-      "max_lines": 1
-    },
-    {
-      "name": "state",
-      "label": "Tract State",
-      "max_lines": 1
-    },
-    {
-      "name": "name",
-      "label": "Tract Name",
-      "max_lines": 1
-    },
-    {
-      "name": "source_id",
-      "label": "Source ID",
-      "max_lines": 1
-    },
-    {
-      "name": "stand_data",
-      "label": "How many stands are there total within the tract?",
-      "type": "formlist",
-      "required": true,
-      "default_value": "1",
-      "options": [
-        {
-          "value": "1"
-        },
-        {
-          "value": "2"
-        },
-        {
-          "value": "3"
-        },
-        {
-          "value": "4"
-        },
-        {
-          "value": "5"
-        }
-      ],
-      "fields": [
-        {
-          "name": "planted",
-          "label": "Planted",
-          "type": "choicechip",
-          "description": "Was the stand established by planting?",
-          "options": [
-            {
-              "value": "yes",
-              "label": "Yes"
-            },
-            {
-              "value": "no",
-              "label": "No"
-            },
-            {
-              "value": "unknown",
-              "label": "Unknown"
-            }
-          ]
-        },
-        {
-          "name": "regeneration",
-          "label": "Regeneration",
-          "type": "radio",
-          "description": "How will stand be regenerated after harvest?",
-          "required": true,
-          "options": [
-            {
-              "value": "planted-same",
-              "label": "Planted- same species as prior to harvest"
-            },
-            {
-              "value": "planted-different",
-              "label": "Planted- different species as prior to harvest"
-            },
-            {
-              "value": "planted-unknown",
-              "label": "Planted- unknown species"
-            },
-            {
-              "value": "natural-regen",
-              "label": "Naturally Regenerated"
-            },
-            {
-              "value": "na",
-              "label": "NA- Arboriculture/Salvage, Preharvest, Selection, or Thinning"
-            },
-            {
-              "value": "unknown",
-              "label": "Unknown"
-            }
-          ]
-        },
-        {
-          "name": "kept_forested",
-          "label": "This land will be kept in forested use",
-          "type": "checkbox",
-          "required": true
-        },
-        {
-          "name": "preharvest_stocking",
-          "label": "Preharvest Stocking",
-          "type": "radio",
-          "description": "Describe the stand's stocking preharvest",
-          "required": true,
-          "options": [
-            {
-              "value": "under",
-              "label": "Under Stocked"
-            },
-            {
-              "value": "full",
-              "label": "Fully Stocked"
-            },
-            {
-              "value": "over",
-              "label": "Overstocked"
-            }
-          ]
-        },
-        {
-          "name": "tons_to_enviva",
-          "label": "Estimated tons to Enviva",
-          "type": "text",
-          "value_type": "number",
-          "decimals": 0,
-          "range_min": 1
-        },
-        {
-          "name": "forest_cover_type",
-          "label": "Forest cover type",
-          "type": "radio",
-          "required": true,
-          "options": [
-            {
-              "value": "pine-with-hw",
-              "label": "Pine with hardwood understory"
-            },
-            {
-              "value": "pine-no-hw",
-              "label": "Pine with no hardwood understory"
-            },
-            {
-              "value": "mixed-pine-hw",
-              "label": "Mixed pine-hardwood"
-            },
-            {
-              "value": "hw-bottomland",
-              "label": "Bottomland hardwood"
-            },
-            {
-              "value": "hw-other",
-              "label": "Other hardwood"
-            }
-          ]
-        },
-        {
-          "name": "harvest_type",
-          "label": "Harvest type",
-          "type": "radio",
-          "required": true,
-          "options": [
-            {
-              "value": "arbo_salv",
-              "label": "Arbo/Salv"
-            },
-            {
-              "value": "clearcut",
-              "label": "Clearcut"
-            },
-            {
-              "value": "preharest",
-              "label": "Preharvest"
-            },
-            {
-              "value": "seed-tree",
-              "label": "Seed Tree"
-            },
-            {
-              "value": "selection",
-              "label": "Selection"
-            },
-            {
-              "value": "thinning",
-              "label": "Thinning"
-            }
-          ]
-        },
-        {
-          "name": "age_class",
-          "label": "Age class",
-          "type": "choicechip",
-          "required": true,
-          "options": [
-            {
-              "value": "0-10"
-            },
-            {
-              "value": "11-20"
-            },
-            {
-              "value": "21-30"
-            },
-            {
-              "value": "31-40"
-            },
-            {
-              "value": "41-50"
-            },
-            {
-              "value": "51-60"
-            },
-            {
-              "value": "61-70"
-            },
-            {
-              "value": "71-80"
-            },
-            {
-              "value": "81-90"
-            },
-            {
-              "value": "91+"
-            }
-          ]
-        },
-        {
-          "name": "acreage",
-          "label": "Acreage",
-          "type": "text",
-          "value_type": "number",
-          "decimals": 0,
-          "range_min": 1
-        },
-        {
-          "name": "history",
-          "label": "Stand History",
-          "description": "Please provide additional information that will help us understand\nthe stand. Examples of useful information include: Year the stand\nwas previously harvested / when current forest was established. Is\nthis a “second entry”? Water features present?"
-        }
-      ]
-    },
-    {
-      "name": "harvest_volume",
-      "label": "Estimated % harvest volume to Enviva",
-      "type": "text",
-      "value_type": "number",
-      "decimals": 0,
-      "range_min": 1,
-      "range_max": 100
-    },
-    {
-      "name": "fiber",
-      "label": "Fiber Supply Region",
-      "type": "dropdown",
-      "options": [
-        {
-          "value": "Mid-Atlantic"
-        },
-        {
-          "value": "Wilmington"
-        },
-        {
-          "value": "Southeast"
-        },
-        {
-          "value": "Pascagoula"
-        }
-      ]
-    },
-    {
-      "name": "mill",
-      "label": "Mill",
-      "type": "dropdown",
-      "options": [
-        {
-          "value": "Northampton"
-        },
-        {
-          "value": "Southampton"
-        },
-        {
-          "value": "Ahoskie"
-        },
-        {
-          "value": "Sampson"
-        },
-        {
-          "value": "Greenwood"
-        },
-        {
-          "value": "Hamlet"
-        },
-        {
-          "value": "Cottondale"
-        },
-        {
-          "value": "Amory"
-        },
-        {
-          "value": "Waycross"
-        },
-        {
-          "value": "Lucedale"
-        }
-      ]
-    },
-    {
-      "name": "prev_tract_number",
-      "label": "Previous Tract Number",
-      "description": "Has the tract been entered before?",
-      "max_lines": 1
-    },
-    {
-      "name": "gps-lat",
-      "label": "GPS Lat",
-      "type": "text",
-      "value_type": "number",
-      "decimals": 4,
-      "range_min": -90,
-      "range_max": 90
-    },
-    {
-      "name": "gps-long",
-      "label": "GPS Long",
-      "type": "text",
-      "value_type": "number",
-      "decimals": 4,
-      "range_min": -180,
-      "range_max": 180
-    },
-    {
-      "name": "landowner-type",
-      "label": "Landowner Type",
-      "type": "radio",
-      "options": [
-        {
-          "value": "family-forest",
-          "label": "Family Forest (NIPL)"
-        },
-        {
-          "value": "industrial",
-          "label": "Industrial (TIMO/REIT)"
-        },
-        {
-          "value": "state-federal",
-          "label": "State/Federal"
-        }
-      ]
-    },
-    {
-      "name": "landowner-name",
-      "label": "Landowner Name",
-      "max_lines": 1
-    },
-    {
-      "name": "longleaf_present",
-      "label": "Longleaf Present",
-      "type": "choicechip",
-      "description": "Is there longleaf pine present on the tract?",
-      "required": true,
-      "options": [
-        {
-          "value": "yes",
-          "label": "Yes"
-        },
-        {
-          "value": "no",
-          "label": "No"
-        }
-      ]
-    },
-    {
-      "name": "longleaf_restoration",
-      "label": "Longleaf Restoration",
-      "type": "choicechip",
-      "description": "Is this a longleaf pine restoration harvest?",
-      "required": true,
-      "options": [
-        {
-          "value": "yes",
-          "label": "Yes"
-        },
-        {
-          "value": "no",
-          "label": "No"
-        }
-      ]
-    },
-    {
-      "name": "comments",
-      "label": "Additional Comments"
-    }
-  ]
+  "form": {
+    "updated_at": "2021-05-19T12:19:58.3665Z",
+    "created_at": "2021-05-19T12:19:58.3665Z",
+    "id": "psD3Xhd8G17YwbAmfdi2",
+    "org_id": "4OL3XCCtl0GfoEmN7iVz",
+    "created_by": "p8Ov0RnOO9U1fVRJoa5R8JHcOLm1",
+    "name": "Tract Demo",
+    "fields": [
+      {
+        "name": "county",
+        "label": "Tract County",
+        "max_lines": 1
+      },
+      {
+        "name": "state",
+        "label": "Tract State",
+        "max_lines": 1
+      },
+      {
+        "name": "name",
+        "label": "Tract Name",
+        "max_lines": 1
+      },
+      {
+        "name": "source_id",
+        "label": "Source ID",
+        "max_lines": 1
+      },
+      {
+        "name": "stand_data",
+        "label": "How many stands are there total within the tract?",
+        "type": "formlist",
+        "required": true,
+        "default_value": "1",
+        "options": [
+          {
+            "value": "1"
+          },
+          {
+            "value": "2"
+          },
+          {
+            "value": "3"
+          },
+          {
+            "value": "4"
+          },
+          {
+            "value": "5"
+          }
+        ],
+        "fields": [
+          {
+            "name": "planted",
+            "label": "Planted",
+            "type": "choicechip",
+            "description": "Was the stand established by planting?",
+            "options": [
+              {
+                "value": "yes",
+                "label": "Yes"
+              },
+              {
+                "value": "no",
+                "label": "No"
+              },
+              {
+                "value": "unknown",
+                "label": "Unknown"
+              }
+            ]
+          },
+          {
+            "name": "regeneration",
+            "label": "Regeneration",
+            "type": "radio",
+            "description": "How will stand be regenerated after harvest?",
+            "required": true,
+            "options": [
+              {
+                "value": "planted-same",
+                "label": "Planted- same species as prior to harvest"
+              },
+              {
+                "value": "planted-different",
+                "label": "Planted- different species as prior to harvest"
+              },
+              {
+                "value": "planted-unknown",
+                "label": "Planted- unknown species"
+              },
+              {
+                "value": "natural-regen",
+                "label": "Naturally Regenerated"
+              },
+              {
+                "value": "na",
+                "label": "NA- Arboriculture/Salvage, Preharvest, Selection, or Thinning"
+              },
+              {
+                "value": "unknown",
+                "label": "Unknown"
+              }
+            ]
+          },
+          {
+            "name": "kept_forested",
+            "label": "This land will be kept in forested use",
+            "type": "checkbox",
+            "required": true
+          },
+          {
+            "name": "preharvest_stocking",
+            "label": "Preharvest Stocking",
+            "type": "radio",
+            "description": "Describe the stand's stocking preharvest",
+            "required": true,
+            "options": [
+              {
+                "value": "under",
+                "label": "Under Stocked"
+              },
+              {
+                "value": "full",
+                "label": "Fully Stocked"
+              },
+              {
+                "value": "over",
+                "label": "Overstocked"
+              }
+            ]
+          },
+          {
+            "name": "tons_to_enviva",
+            "label": "Estimated tons to Enviva",
+            "type": "text",
+            "value_type": "number",
+            "decimals": 0,
+            "range_min": 1
+          },
+          {
+            "name": "forest_cover_type",
+            "label": "Forest cover type",
+            "type": "radio",
+            "required": true,
+            "options": [
+              {
+                "value": "pine-with-hw",
+                "label": "Pine with hardwood understory"
+              },
+              {
+                "value": "pine-no-hw",
+                "label": "Pine with no hardwood understory"
+              },
+              {
+                "value": "mixed-pine-hw",
+                "label": "Mixed pine-hardwood"
+              },
+              {
+                "value": "hw-bottomland",
+                "label": "Bottomland hardwood"
+              },
+              {
+                "value": "hw-other",
+                "label": "Other hardwood"
+              }
+            ]
+          },
+          {
+            "name": "harvest_type",
+            "label": "Harvest type",
+            "type": "radio",
+            "required": true,
+            "options": [
+              {
+                "value": "arbo_salv",
+                "label": "Arbo/Salv"
+              },
+              {
+                "value": "clearcut",
+                "label": "Clearcut"
+              },
+              {
+                "value": "preharest",
+                "label": "Preharvest"
+              },
+              {
+                "value": "seed-tree",
+                "label": "Seed Tree"
+              },
+              {
+                "value": "selection",
+                "label": "Selection"
+              },
+              {
+                "value": "thinning",
+                "label": "Thinning"
+              }
+            ]
+          },
+          {
+            "name": "age_class",
+            "label": "Age class",
+            "type": "choicechip",
+            "required": true,
+            "options": [
+              {
+                "value": "0-10"
+              },
+              {
+                "value": "11-20"
+              },
+              {
+                "value": "21-30"
+              },
+              {
+                "value": "31-40"
+              },
+              {
+                "value": "41-50"
+              },
+              {
+                "value": "51-60"
+              },
+              {
+                "value": "61-70"
+              },
+              {
+                "value": "71-80"
+              },
+              {
+                "value": "81-90"
+              },
+              {
+                "value": "91+"
+              }
+            ]
+          },
+          {
+            "name": "acreage",
+            "label": "Acreage",
+            "type": "text",
+            "value_type": "number",
+            "decimals": 0,
+            "range_min": 1
+          },
+          {
+            "name": "history",
+            "label": "Stand History",
+            "description": "Please provide additional information that will help us understand\nthe stand. Examples of useful information include: Year the stand\nwas previously harvested / when current forest was established. Is\nthis a “second entry”? Water features present?"
+          }
+        ]
+      },
+      {
+        "name": "harvest_volume",
+        "label": "Estimated % harvest volume to Enviva",
+        "type": "text",
+        "value_type": "number",
+        "decimals": 0,
+        "range_min": 1,
+        "range_max": 100
+      },
+      {
+        "name": "fiber",
+        "label": "Fiber Supply Region",
+        "type": "dropdown",
+        "options": [
+          {
+            "value": "Mid-Atlantic"
+          },
+          {
+            "value": "Wilmington"
+          },
+          {
+            "value": "Southeast"
+          },
+          {
+            "value": "Pascagoula"
+          }
+        ]
+      },
+      {
+        "name": "mill",
+        "label": "Mill",
+        "type": "dropdown",
+        "options": [
+          {
+            "value": "Northampton"
+          },
+          {
+            "value": "Southampton"
+          },
+          {
+            "value": "Ahoskie"
+          },
+          {
+            "value": "Sampson"
+          },
+          {
+            "value": "Greenwood"
+          },
+          {
+            "value": "Hamlet"
+          },
+          {
+            "value": "Cottondale"
+          },
+          {
+            "value": "Amory"
+          },
+          {
+            "value": "Waycross"
+          },
+          {
+            "value": "Lucedale"
+          }
+        ]
+      },
+      {
+        "name": "prev_tract_number",
+        "label": "Previous Tract Number",
+        "description": "Has the tract been entered before?",
+        "max_lines": 1
+      },
+      {
+        "name": "gps-lat",
+        "label": "GPS Lat",
+        "type": "text",
+        "value_type": "number",
+        "decimals": 4,
+        "range_min": -90,
+        "range_max": 90
+      },
+      {
+        "name": "gps-long",
+        "label": "GPS Long",
+        "type": "text",
+        "value_type": "number",
+        "decimals": 4,
+        "range_min": -180,
+        "range_max": 180
+      },
+      {
+        "name": "landowner-type",
+        "label": "Landowner Type",
+        "type": "radio",
+        "options": [
+          {
+            "value": "family-forest",
+            "label": "Family Forest (NIPL)"
+          },
+          {
+            "value": "industrial",
+            "label": "Industrial (TIMO/REIT)"
+          },
+          {
+            "value": "state-federal",
+            "label": "State/Federal"
+          }
+        ]
+      },
+      {
+        "name": "landowner-name",
+        "label": "Landowner Name",
+        "max_lines": 1
+      },
+      {
+        "name": "longleaf_present",
+        "label": "Longleaf Present",
+        "type": "choicechip",
+        "description": "Is there longleaf pine present on the tract?",
+        "required": true,
+        "options": [
+          {
+            "value": "yes",
+            "label": "Yes"
+          },
+          {
+            "value": "no",
+            "label": "No"
+          }
+        ]
+      },
+      {
+        "name": "longleaf_restoration",
+        "label": "Longleaf Restoration",
+        "type": "choicechip",
+        "description": "Is this a longleaf pine restoration harvest?",
+        "required": true,
+        "options": [
+          {
+            "value": "yes",
+            "label": "Yes"
+          },
+          {
+            "value": "no",
+            "label": "No"
+          }
+        ]
+      },
+      {
+        "name": "comments",
+        "label": "Additional Comments"
+      }
+    ]
+  }
 }
 ```    
 </details>
