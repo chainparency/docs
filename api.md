@@ -1320,6 +1320,99 @@ curl "$GOTRACE_API/v1/locations/$LOCATION_ID" \
 ```    
 </details>
 
+### GET Locations
+
+```sh
+curl "$GOTRACE_API/v1/orgs/$ORG_ID/locations" \
+  -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer $API_TOKEN"
+```  
+
+#### Query Parameters
+
+- `start_at datetime`
+- `limit int`
+
+```json
+{
+    "locations": [
+        {
+            "updated_at": "2021-05-20T20:36:46.576967Z",
+            "created_at": "2021-05-19T12:43:31.255573Z",
+            "id": "eUHZAR5rMeCcnpRZXgN8",
+            "org_id": "4OL3XCCtl0GfoEmN7iVz",
+            "hidden_at": null,
+            "name": "Test",
+            "status": "",
+            "address": "test",
+            "lat": 7,
+            "lon": 9,
+            "geo": "s1nruf39gnw6",
+            "radius": 1,
+            "fuzzy": null,
+            "type": {
+                "id": "kSjbZZXKG9XOLOyift3g",
+                "name": "Jordan's Tract and Stand Test",
+                "data_form": {
+                    "id": "psD3Xhd8G17YwbAmfdi2",
+                    "name": "Tract Demo"
+                },
+                "forms": [
+                    {
+                        "id": "pm4Hhey53nfw4hwFiShH",
+                        "name": "Field Inspection Demo"
+                    }
+                ]
+            },
+            "data": {
+                "comments": null,
+                "county": "C",
+                "fiber": null,
+                "gps-lat": null,
+                "gps-long": null,
+                "harvest_volume": null,
+                "landowner-name": null,
+                "landowner-type": null,
+                "longleaf_present": "no",
+                "longleaf_restoration": "yes",
+                "mill": null,
+                "name": "N",
+                "prev_tract_number": null,
+                "source_id": null,
+                "stand_data": [
+                    {
+                        "acreage": null,
+                        "age_class": "11-20",
+                        "forest_cover_type": "pine-no-hw",
+                        "harvest_type": "selection",
+                        "history": null,
+                        "kept_forested": true,
+                        "planted": "yes",
+                        "preharvest_stocking": "under",
+                        "regeneration": "planted-same",
+                        "tons_to_enviva": null
+                    },
+                    {
+                        "acreage": null,
+                        "age_class": "11-20",
+                        "forest_cover_type": "pine-with-hw",
+                        "harvest_type": "preharest",
+                        "history": null,
+                        "kept_forested": true,
+                        "planted": null,
+                        "preharvest_stocking": "under",
+                        "regeneration": "na",
+                        "tons_to_enviva": null
+                    }
+                ],
+                "stand_data_count": "2",
+                "state": "S"
+            }
+        }
+    ]
+}
+```
+
 ## Forms
 
 ### GET Form
