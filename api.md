@@ -1173,24 +1173,24 @@ curl "$GOTRACE_API/v1/locations/$LOCATION_ID" \
 ```json
 {
   "loc": {
-    "updated_at": "2021-05-20T20:36:46.576967Z",
-    "created_at": "2021-05-19T12:43:31.255573Z",
-    "id": "eUHZAR5rMeCcnpRZXgN8",
+    "updated_at": "2021-05-21T12:31:47.547573Z",
+    "created_at": "2021-05-21T12:31:47.547573Z",
+    "id": "WOWTxCg0Ml1XaoxIw1Gx",
     "org_id": "4OL3XCCtl0GfoEmN7iVz",
     "hidden_at": null,
-    "name": "Test",
+    "name": "Test Tract",
     "status": "",
     "address": "test",
-    "lat": 7,
-    "lon": 9,
-    "geo": "s1nruf39gnw6",
+    "lat": 12,
+    "lon": 4,
+    "geo": "s44u7089nf0h",
     "radius": 1,
     "fuzzy": null,
     "type": {
       "id": "kSjbZZXKG9XOLOyift3g",
-      "name": "Jordan's Tract and Stand Test",
+      "name": "Tract",
       "data_form": {
-        "id": "psD3Xhd8G17YwbAmfdi2",
+        "id": "e4lqNRi3WN8DlQXTbiah",
         "name": "Tract Demo"
       },
       "forms": [
@@ -1202,47 +1202,35 @@ curl "$GOTRACE_API/v1/locations/$LOCATION_ID" \
     },
     "data": {
       "comments": null,
-      "county": "C",
-      "fiber": null,
-      "gps-lat": null,
-      "gps-long": null,
-      "harvest_volume": null,
-      "landowner-name": null,
-      "landowner-type": null,
-      "longleaf_present": "no",
-      "longleaf_restoration": "yes",
-      "mill": null,
-      "name": "N",
-      "prev_tract_number": null,
-      "source_id": null,
+      "county": "Nowhere",
+      "gps-lat": "12.1",
+      "gps-long": "10.2",
+      "harvest_volume": "32",
+      "kept_forested": true,
+      "landowner-name": "Owner",
+      "landowner-type": "family-forest",
+      "longleaf_present": "yes",
+      "longleaf_restoration": "no",
+      "mill": "Greenwood",
+      "name": "Named",
+      "prev_tract_number": "",
+      "region": "Southeast",
+      "source_id": "asdf123",
       "stand_data": [
         {
-          "acreage": null,
-          "age_class": "11-20",
-          "forest_cover_type": "pine-no-hw",
-          "harvest_type": "selection",
-          "history": null,
-          "kept_forested": true,
-          "planted": "yes",
-          "preharvest_stocking": "under",
-          "regeneration": "planted-same",
-          "tons_to_enviva": null
-        },
-        {
-          "acreage": null,
-          "age_class": "11-20",
+          "acreage": "5",
+          "age_class": "31-40",
           "forest_cover_type": "pine-with-hw",
           "harvest_type": "preharest",
           "history": null,
-          "kept_forested": true,
-          "planted": null,
+          "planted": "yes",
           "preharvest_stocking": "under",
-          "regeneration": "na",
-          "tons_to_enviva": null
+          "regeneration": "planted-same",
+          "tons_to_enviva": "4"
         }
       ],
-      "stand_data_count": "2",
-      "state": "S"
+      "stand_data_count": "1",
+      "state": "NC"
     }
   }
 }
