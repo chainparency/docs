@@ -387,7 +387,7 @@ curl "$GOTRACE_API/v1/loads/$LOAD_ID/events" \
 
 #### Query Parameters
 
-- `type string` Filter results by event type. Repeat for multiple: `.../events?type=gps-start&type=gps-stop`.
+- `type string` Filter results by event type. Repeat for multiple: `.../events?type=gps-start&type=gps-stop`. See [Event Types](#event-types)
 
 <details>
     <summary>Example Response</summary>
