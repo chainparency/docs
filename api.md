@@ -1307,6 +1307,8 @@ curl "$GOTRACE_API/v1/orgs/$ORG_ID/locations" \
 - `start_at datetime`
 - `limit int`
 
+<details><summary>Example Response</summary>
+
 ```json
 {
     "locations": [
@@ -1386,6 +1388,7 @@ curl "$GOTRACE_API/v1/orgs/$ORG_ID/locations" \
     ]
 }
 ```
+</details>
 
 ## Forms
 
