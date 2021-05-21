@@ -376,6 +376,8 @@ one or more individual fields can be updated using dot notation (`data.*`).
 
 ### GET Load Events by ID
 
+List events for a load.
+
 ```sh
 curl "$GOTRACE_API/v1/loads/$LOAD_ID/events" \
   -H 'Content-Type: application/json' \
@@ -411,84 +413,7 @@ curl "$GOTRACE_API/v1/loads/$LOAD_ID/events" \
       "multihash": "QmW5EKHx8zV5TB77f5jdADxVRentUU6WFym4PVyFXJsiWs",
       "tx_hash": "0x75d15b3a953f678e459d02b9188f3934cddbc8f3f214ae906161bc9f781e83a4"
     }
-  ],
-  "loads": {
-    "bx3GtRgE90FLi1CeZCif": {
-      "updated_at": "2020-07-15T15:44:27.009721Z",
-      "created_at": "2020-07-15T15:44:24.503183Z",
-      "id": "bx3GtRgE90FLi1CeZCif",
-      "deleted_at": null,
-      "name": "Named Load",
-      "asset": "LkiEUtJNndhbbz8qfFQW",
-      "paired_id": "",
-      "created_by": "p8Ov0RnOO9U1fVRJoa5R8JHcOLm1",
-      "latest_user_id": "p8Ov0RnOO9U1fVRJoa5R8JHcOLm1",
-      "org_id": "eboThjQLWfAd79dvQ05O",
-      "latest_org_id": "eboThjQLWfAd79dvQ05O",
-      "parent_id": "",
-      "status": "Stopped",
-      "source_load_ids": null,
-      "start_location_id": "5peH6IvKncoDZMVLEleK",
-      "start_point": null,
-      "latest_location_id": "5peH6IvKncoDZMVLEleK",
-      "latest_point": null,
-      "latest_event_type": "created",
-      "trace_is_public": false,
-      "is_container": false,
-      "last_committed_event_at": "2020-07-15T15:44:24.968239Z"
-    }
-  },
-  "locations": {
-    "5peH6IvKncoDZMVLEleK": {
-      "updated_at": "2020-04-15T17:39:50.38664Z",
-      "created_at": "2020-04-15T17:39:50.38664Z",
-      "id": "5peH6IvKncoDZMVLEleK",
-      "org_id": "UEk2tZFKAF1LmkfzgbyA",
-      "deleted_at": null,
-      "name": "Gotham",
-      "status": "",
-      "address": "13 Wayne Pl.",
-      "lat": 41.8781,
-      "lon": -87.6298,
-      "geo": "dp3wjztvtetj",
-      "radius": 10,
-      "fuzzy": null
-    }
-  },
-  "orgs": {
-    "UEk2tZFKAF1LmkfzgbyA": {
-      "updated_at": "2020-04-10T13:14:56.228951Z",
-      "created_at": "2020-04-10T13:08:03.039567Z",
-      "id": "UEk2tZFKAF1LmkfzgbyA",
-      "deleted_at": null,
-      "name": "Coffee Corp.",
-      "logo": "https://cdn.pixabay.com/photo/2016/12/27/13/10/logo-1933884_960_720.png",
-      "status": ""
-    },
-    "eboThjQLWfAd79dvQ05O": {
-      "updated_at": "2020-06-24T02:18:08.86463Z",
-      "created_at": "2020-06-24T02:18:08.864629Z",
-      "id": "eboThjQLWfAd79dvQ05O",
-      "deleted_at": null,
-      "name": "test",
-      "logo": "https://cdn.pixabay.com/photo/2017/01/31/23/42/animal-2028258_960_720.png",
-      "status": ""
-    }
-  },
-  "users": {
-    "p8Ov0RnOO9U1fVRJoa5R8JHcOLm1": {
-      "updated_at": "2020-07-13T23:15:18.97574Z",
-      "created_at": "2020-04-16T15:42:32.988143Z",
-      "id": "p8Ov0RnOO9U1fVRJoa5R8JHcOLm1",
-      "deleted_at": null,
-      "email": "jkrage@gochain.io",
-      "name": "Jordan Krage",
-      "picture": "https://lh3.googleusercontent.com/a-/AOh14Ggut8II3imZgCI1vjMTsxjVi5glJbpytSxd7i7G=s96-c",
-      "status": "",
-      "role": "",
-      "quickstart": false
-    }
-  }
+  ]
 }
 ```
 </details>
