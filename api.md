@@ -385,6 +385,10 @@ curl "$GOTRACE_API/v1/loads/$LOAD_ID/events" \
 
 ```
 
+#### Query Parameters
+
+- `type string` Filter results by event type. Repeat for multiple: `.../events?type=gps-start&type=gps-stop`.
+
 <details>
     <summary>Example Response</summary>
 
@@ -1232,6 +1236,57 @@ curl "$GOTRACE_API/v1/locations/$LOCATION_ID" \
       "stand_data_count": "1",
       "state": "NC"
     }
+  }
+}
+```    
+</details>
+
+### GET Location Data
+
+Fetch a location's `data` (custom fields).
+
+```sh
+curl "$GOTRACE_API/v1/locations/$LOCATION_ID/data" \
+  -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer $API_TOKEN"
+```  
+
+<details>
+    <summary>Example Response</summary>
+    
+```json
+{
+  "data": {
+    "comments": null,
+    "county": "Nowhere",
+    "gps-lat": "12.1",
+    "gps-long": "10.2",
+    "harvest_volume": "32",
+    "kept_forested": true,
+    "landowner-name": "Owner",
+    "landowner-type": "family-forest",
+    "longleaf_present": "yes",
+    "longleaf_restoration": "no",
+    "mill": "Greenwood",
+    "name": "Named",
+    "prev_tract_number": "",
+    "region": "Southeast",
+    "source_id": "asdf123",
+    "stand_data": [
+      {
+        "acreage": "5",
+        "age_class": "31-40",
+        "forest_cover_type": "pine-with-hw",
+        "harvest_type": "preharest",
+        "history": null,
+        "planted": "yes",
+        "preharvest_stocking": "under",
+        "regeneration": "planted-same",
+        "tons_to_enviva": "4"
+      }
+    ],
+    "stand_data_count": "1",
+    "state": "NC"
   }
 }
 ```    
