@@ -46,6 +46,8 @@ curl "$GOTRACE_API/v1/orgs/$ORG_ID/assets" \
 
 ### GET Assets
 
+List assets for an organization, sorted by recently created.
+
 ```sh
 curl "$GOTRACE_API/v1/orgs/$ORG_ID/assets" \
   -H 'Content-Type: application/json' \
@@ -164,6 +166,8 @@ curl "$GOTRACE_API/v1/orgs/$ORG_ID/loads" \
 </details>
 
 ### GET Loads
+
+List loads for an organization, sorted by recently created.
 
 ```sh
 curl "$GOTRACE_API/v1/orgs/$ORG_ID/loads" \
@@ -1322,6 +1326,8 @@ curl "$GOTRACE_API/v1/locations/$LOCATION_ID" \
 
 ### GET Locations
 
+List locations for an organization, sorted by recently updated.
+
 ```sh
 curl "$GOTRACE_API/v1/orgs/$ORG_ID/locations" \
   -H 'Content-Type: application/json' \
@@ -1414,6 +1420,8 @@ curl "$GOTRACE_API/v1/orgs/$ORG_ID/locations" \
 ```
 
 ## Forms
+
+Custom form definitions.
 
 ### GET Form
 
