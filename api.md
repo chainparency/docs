@@ -1408,32 +1408,222 @@ curl "$GOTRACE_API/v1/forms/$FORM_ID" \
 ```json
 {
   "form": {
-    "updated_at": "2021-05-19T12:19:58.3665Z",
-    "created_at": "2021-05-19T12:19:58.3665Z",
-    "id": "psD3Xhd8G17YwbAmfdi2",
+    "updated_at": "2021-05-21T12:21:21.731111Z",
+    "created_at": "2021-05-21T12:21:21.731111Z",
+    "id": "e4lqNRi3WN8DlQXTbiah",
     "org_id": "4OL3XCCtl0GfoEmN7iVz",
     "created_by": "p8Ov0RnOO9U1fVRJoa5R8JHcOLm1",
     "name": "Tract Demo",
     "fields": [
       {
-        "name": "county",
-        "label": "Tract County",
+        "name": "kept_forested",
+        "label": "This land will be kept in forested use",
+        "type": "checkbox",
+        "required": true
+      },
+      {
+        "name": "region",
+        "label": "Fiber Supply Region",
+        "type": "dropdown",
+        "required": true,
+        "options": [
+          {
+            "value": "Mid-Atlantic"
+          },
+          {
+            "value": "Wilmington"
+          },
+          {
+            "value": "Southeast"
+          },
+          {
+            "value": "Pascagoula"
+          }
+        ]
+      },
+      {
+        "name": "mill",
+        "label": "Mill",
+        "type": "dropdown",
+        "required": true,
+        "options": [
+          {
+            "value": "Northampton"
+          },
+          {
+            "value": "Southampton"
+          },
+          {
+            "value": "Ahoskie"
+          },
+          {
+            "value": "Sampson"
+          },
+          {
+            "value": "Greenwood"
+          },
+          {
+            "value": "Hamlet"
+          },
+          {
+            "value": "Cottondale"
+          },
+          {
+            "value": "Amory"
+          },
+          {
+            "value": "Waycross"
+          },
+          {
+            "value": "Lucedale"
+          }
+        ]
+      },
+      {
+        "name": "source_id",
+        "label": "Source ID",
+        "required": true,
         "max_lines": 1
       },
       {
-        "name": "state",
-        "label": "Tract State",
+        "name": "prev_tract_number",
+        "label": "Previous Tract Number",
+        "description": "Has the tract been entered before?",
         "max_lines": 1
       },
       {
         "name": "name",
         "label": "Tract Name",
+        "required": true,
         "max_lines": 1
       },
       {
-        "name": "source_id",
-        "label": "Source ID",
+        "name": "county",
+        "label": "Tract County",
+        "required": true,
         "max_lines": 1
+      },
+      {
+        "name": "state",
+        "label": "Tract State",
+        "type": "choicechip",
+        "required": true,
+        "options": [
+          {
+            "value": "AL"
+          },
+          {
+            "value": "FL"
+          },
+          {
+            "value": "GA"
+          },
+          {
+            "value": "NC"
+          },
+          {
+            "value": "MS"
+          },
+          {
+            "value": "PA"
+          },
+          {
+            "value": "SC"
+          },
+          {
+            "value": "VA"
+          }
+        ]
+      },
+      {
+        "name": "gps-lat",
+        "label": "GPS Lat",
+        "type": "text",
+        "value_type": "number",
+        "required": true,
+        "decimals": 4,
+        "range_min": -90,
+        "range_max": 90
+      },
+      {
+        "name": "gps-long",
+        "label": "GPS Long",
+        "type": "text",
+        "value_type": "number",
+        "required": true,
+        "decimals": 4,
+        "range_min": -180,
+        "range_max": 180
+      },
+      {
+        "name": "landowner-name",
+        "label": "Landowner Name",
+        "required": true,
+        "max_lines": 1
+      },
+      {
+        "name": "landowner-type",
+        "label": "Landowner Type",
+        "type": "radio",
+        "required": true,
+        "options": [
+          {
+            "value": "family-forest",
+            "label": "Family Forest (NIPL)"
+          },
+          {
+            "value": "industrial",
+            "label": "Industrial (TIMO/REIT)"
+          },
+          {
+            "value": "state-federal",
+            "label": "State/Federal"
+          }
+        ]
+      },
+      {
+        "name": "harvest_volume",
+        "label": "Estimated % harvest volume to Enviva",
+        "type": "text",
+        "value_type": "number",
+        "required": true,
+        "decimals": 0,
+        "range_min": 1,
+        "range_max": 100
+      },
+      {
+        "name": "longleaf_present",
+        "label": "Longleaf Present",
+        "type": "choicechip",
+        "description": "Is there longleaf pine present on the tract?",
+        "required": true,
+        "options": [
+          {
+            "value": "yes",
+            "label": "Yes"
+          },
+          {
+            "value": "no",
+            "label": "No"
+          }
+        ]
+      },
+      {
+        "name": "longleaf_restoration",
+        "label": "Longleaf Restoration",
+        "type": "choicechip",
+        "description": "Is this a longleaf pine restoration harvest?",
+        "required": true,
+        "options": [
+          {
+            "value": "yes",
+            "label": "Yes"
+          },
+          {
+            "value": "no",
+            "label": "No"
+          }
+        ]
       },
       {
         "name": "stand_data",
@@ -1513,12 +1703,6 @@ curl "$GOTRACE_API/v1/forms/$FORM_ID" \
             ]
           },
           {
-            "name": "kept_forested",
-            "label": "This land will be kept in forested use",
-            "type": "checkbox",
-            "required": true
-          },
-          {
             "name": "preharvest_stocking",
             "label": "Preharvest Stocking",
             "type": "radio",
@@ -1544,6 +1728,7 @@ curl "$GOTRACE_API/v1/forms/$FORM_ID" \
             "label": "Estimated tons to Enviva",
             "type": "text",
             "value_type": "number",
+            "required": true,
             "decimals": 0,
             "range_min": 1
           },
@@ -1650,160 +1835,14 @@ curl "$GOTRACE_API/v1/forms/$FORM_ID" \
             "label": "Acreage",
             "type": "text",
             "value_type": "number",
+            "required": true,
             "decimals": 0,
             "range_min": 1
           },
           {
             "name": "history",
             "label": "Stand History",
-            "description": "Please provide additional information that will help us understand\nthe stand. Examples of useful information include: Year the stand\nwas previously harvested / when current forest was established. Is\nthis a “second entry”? Water features present?"
-          }
-        ]
-      },
-      {
-        "name": "harvest_volume",
-        "label": "Estimated % harvest volume to Enviva",
-        "type": "text",
-        "value_type": "number",
-        "decimals": 0,
-        "range_min": 1,
-        "range_max": 100
-      },
-      {
-        "name": "fiber",
-        "label": "Fiber Supply Region",
-        "type": "dropdown",
-        "options": [
-          {
-            "value": "Mid-Atlantic"
-          },
-          {
-            "value": "Wilmington"
-          },
-          {
-            "value": "Southeast"
-          },
-          {
-            "value": "Pascagoula"
-          }
-        ]
-      },
-      {
-        "name": "mill",
-        "label": "Mill",
-        "type": "dropdown",
-        "options": [
-          {
-            "value": "Northampton"
-          },
-          {
-            "value": "Southampton"
-          },
-          {
-            "value": "Ahoskie"
-          },
-          {
-            "value": "Sampson"
-          },
-          {
-            "value": "Greenwood"
-          },
-          {
-            "value": "Hamlet"
-          },
-          {
-            "value": "Cottondale"
-          },
-          {
-            "value": "Amory"
-          },
-          {
-            "value": "Waycross"
-          },
-          {
-            "value": "Lucedale"
-          }
-        ]
-      },
-      {
-        "name": "prev_tract_number",
-        "label": "Previous Tract Number",
-        "description": "Has the tract been entered before?",
-        "max_lines": 1
-      },
-      {
-        "name": "gps-lat",
-        "label": "GPS Lat",
-        "type": "text",
-        "value_type": "number",
-        "decimals": 4,
-        "range_min": -90,
-        "range_max": 90
-      },
-      {
-        "name": "gps-long",
-        "label": "GPS Long",
-        "type": "text",
-        "value_type": "number",
-        "decimals": 4,
-        "range_min": -180,
-        "range_max": 180
-      },
-      {
-        "name": "landowner-type",
-        "label": "Landowner Type",
-        "type": "radio",
-        "options": [
-          {
-            "value": "family-forest",
-            "label": "Family Forest (NIPL)"
-          },
-          {
-            "value": "industrial",
-            "label": "Industrial (TIMO/REIT)"
-          },
-          {
-            "value": "state-federal",
-            "label": "State/Federal"
-          }
-        ]
-      },
-      {
-        "name": "landowner-name",
-        "label": "Landowner Name",
-        "max_lines": 1
-      },
-      {
-        "name": "longleaf_present",
-        "label": "Longleaf Present",
-        "type": "choicechip",
-        "description": "Is there longleaf pine present on the tract?",
-        "required": true,
-        "options": [
-          {
-            "value": "yes",
-            "label": "Yes"
-          },
-          {
-            "value": "no",
-            "label": "No"
-          }
-        ]
-      },
-      {
-        "name": "longleaf_restoration",
-        "label": "Longleaf Restoration",
-        "type": "choicechip",
-        "description": "Is this a longleaf pine restoration harvest?",
-        "required": true,
-        "options": [
-          {
-            "value": "yes",
-            "label": "Yes"
-          },
-          {
-            "value": "no",
-            "label": "No"
+            "description": "Please provide additional information that will help us understand\nthe stand. Examples of useful information include: Year the stand\nwas previously harvested / when current forest was established. Is\nthis a âsecond entryâ? Water features present?"
           }
         ]
       },
