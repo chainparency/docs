@@ -1853,5 +1853,550 @@ curl "$GOTRACE_API/v1/forms/$FORM_ID" \
     ]
   }
 }
-```    
+```
+
+</details>
+
+### POST Form response
+
+```sh
+curl "$GOTRACE_API/v1/forms/$FORM_ID/responses/$RESPONSE_ID" \
+  -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer $API_TOKEN"
+  --data-raw '{"audit_type":"post","img_inspection":"no","water_features":["ditches"],"smz_compliant":"yes","stream_crossings":"no","hcv_priority_present":["low-pocosin"],"land_use_change":"yes","hydrology_altered":"2","flow_maintained":"1","minimized_disturbance":"2","residual_impact":"1","appropriate_timing":"2","stream_debris_clear":"2","stream_crossing_stable":"2","soil_erosion_prevention":"2","smz_width":"2","trash_cleanup":"2","oil_spill_presence":"1","haul_road_condition":"2","waterbars_installed":"1","origin_wood_documentation":"no","from_known":"yes","native_species":"no","econ_haul_radius":"no","timber_theft_trespass":"yes","rights_violation":"yes","genetic_modified":"no","weland":"yes","peatland":"no","comments":null,"overall_tract_compliance":"in"}'
+```  
+
+### GET Form response
+
+```sh
+curl "$GOTRACE_API/v1/forms/$FORM_ID/responses/$RESPONSE_ID" \
+  -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer $API_TOKEN"
+```
+
+<details>
+    <summary>Example Response</summary>
+
+```json
+{
+   "response":{
+      "updated_at":"2021-05-25T15:42:01.377693Z",
+      "created_at":"2021-05-25T15:37:27.918248Z",
+      "id":"loCbfjz3oM",
+      "status":"done",
+      "form_id":"K3NF9VO0A",
+      "location_id":"glG6bUS",
+      "data":{
+         "appropriate_timing":"2",
+         "audit_type":"post",
+         "comments":null,
+         "econ_haul_radius":"no",
+         "flow_maintained":"1",
+         "from_known":"yes",
+         "genetic_modified":"no",
+         "haul_road_condition":"2",
+         "hcv_priority_present":[
+            "low-pocosin"
+         ],
+         "hydrology_altered":"2",
+         "img_inspection":"no",
+         "land_use_change":"yes",
+         "minimized_disturbance":"2",
+         "native_species":"no",
+         "oil_spill_presence":"1",
+         "origin_wood_documentation":"no",
+         "overall_tract_compliance":"in",
+         "peatland":"no",
+         "residual_impact":"1",
+         "rights_violation":"yes",
+         "smz_compliant":"yes",
+         "smz_width":"2",
+         "soil_erosion_prevention":"2",
+         "stream_crossing_stable":"2",
+         "stream_crossings":"no",
+         "stream_debris_clear":"2",
+         "timber_theft_trespass":"yes",
+         "trash_cleanup":"2",
+         "water_features":[
+            "ditches"
+         ],
+         "waterbars_installed":"1",
+         "weland":"yes"
+      }
+   }
+}
+```
+
+</details>
+
+### GET Form responses
+
+```sh
+curl "$GOTRACE_API/v1/forms/$FORM_ID/responses" \
+  -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer $API_TOKEN"
+```
+
+#### Query Parameters
+
+- `created_after datetime`
+- `created_before datetime`
+
+<details>
+    <summary>Example Response</summary>
+
+```json
+{
+   {
+   "responses":[
+      {
+         "updated_at":"2021-05-25T15:42:01.377693Z",
+         "created_at":"2021-05-25T15:37:27.918248Z",
+         "id":"loCbfjz3o",
+         "status":"done",
+         "form_id":"K3NF9VO0",
+         "location_id":"glG6bUS",
+         "created_by":"",
+         "data":{
+            "appropriate_timing":"2",
+            "audit_type":"post",
+            "comments":null,
+            "econ_haul_radius":"no",
+            "flow_maintained":"1",
+            "from_known":"yes",
+            "genetic_modified":"no",
+            "haul_road_condition":"2",
+            "hcv_priority_present":[
+               "low-pocosin"
+            ],
+            "hydrology_altered":"2",
+            "img_inspection":"no",
+            "land_use_change":"yes",
+            "minimized_disturbance":"2",
+            "native_species":"no",
+            "oil_spill_presence":"1",
+            "origin_wood_documentation":"no",
+            "overall_tract_compliance":"in",
+            "peatland":"no",
+            "residual_impact":"1",
+            "rights_violation":"yes",
+            "smz_compliant":"yes",
+            "smz_width":"2",
+            "soil_erosion_prevention":"2",
+            "stream_crossing_stable":"2",
+            "stream_crossings":"no",
+            "stream_debris_clear":"2",
+            "timber_theft_trespass":"yes",
+            "trash_cleanup":"2",
+            "water_features":[
+               "ditches"
+            ],
+            "waterbars_installed":"1",
+            "weland":"yes"
+         }
+      },
+      {
+         "updated_at":"2021-05-25T15:36:50.402077Z",
+         "created_at":"2021-05-25T15:36:50.402077Z",
+         "id":"TITUqoqirf",
+         "status":"invited",
+         "form_id":"K3NF9VO0A",
+         "location_id":"glG6bUSe",
+         "created_by":""
+      },
+      {
+         "updated_at":"2021-05-25T01:41:31.972429Z",
+         "created_at":"2021-05-25T01:40:32.121555Z",
+         "id":"zhiBZeD68",
+         "status":"done",
+         "form_id":"K3NF9VO0A",
+         "location_id":"glG6bUSe",
+         "created_by":"",
+         "data":{
+            "appropriate_timing":"2",
+            "audit_type":"post",
+            "comments":null,
+            "econ_haul_radius":"yes",
+            "flow_maintained":"2",
+            "from_known":"yes",
+            "genetic_modified":"no",
+            "haul_road_condition":"1",
+            "hcv_priority_present":[
+               "low-pocosin"
+            ],
+            "hydrology_altered":"3",
+            "img_inspection":"yes",
+            "land_use_change":"no",
+            "minimized_disturbance":"3",
+            "native_species":"no",
+            "oil_spill_presence":"2",
+            "origin_wood_documentation":"no",
+            "overall_tract_compliance":"in",
+            "peatland":"no",
+            "residual_impact":"2",
+            "rights_violation":"yes",
+            "smz_compliant":"yes",
+            "smz_width":"2",
+            "soil_erosion_prevention":"na",
+            "stream_crossing_stable":"2",
+            "stream_crossings":"yes",
+            "stream_debris_clear":"3",
+            "timber_theft_trespass":"no",
+            "trash_cleanup":"3",
+            "water_features":[
+               "defined-stream"
+            ],
+            "waterbars_installed":"2",
+            "weland":"yes"
+         }
+      },
+      {
+         "updated_at":"2021-05-25T01:38:52.435895Z",
+         "created_at":"2021-05-25T01:37:40.74711Z",
+         "id":"txdE65KOoH",
+         "status":"done",
+         "form_id":"K3NF9VO0A",
+         "location_id":"glG6bUS",
+         "created_by":"",
+         "data":{
+            "appropriate_timing":"2",
+            "audit_type":"ongoing",
+            "comments":null,
+            "econ_haul_radius":"no",
+            "flow_maintained":"2",
+            "from_known":"no",
+            "genetic_modified":"yes",
+            "haul_road_condition":"0",
+            "hcv_priority_present":[
+               "atlantic-white-cedar"
+            ],
+            "hydrology_altered":"2",
+            "img_inspection":"yes",
+            "land_use_change":"yes",
+            "minimized_disturbance":"1",
+            "native_species":"yes",
+            "oil_spill_presence":"2",
+            "origin_wood_documentation":"yes",
+            "overall_tract_compliance":"in",
+            "peatland":"yes",
+            "residual_impact":"0",
+            "rights_violation":"no",
+            "smz_compliant":"yes",
+            "smz_width":"0",
+            "soil_erosion_prevention":"2",
+            "stream_crossing_stable":"1",
+            "stream_crossings":"yes",
+            "stream_debris_clear":"3",
+            "timber_theft_trespass":"yes",
+            "trash_cleanup":"2",
+            "water_features":[
+               "defined-stream"
+            ],
+            "waterbars_installed":"2",
+            "weland":"no"
+         }
+      },
+      {
+         "updated_at":"2021-05-24T23:47:03.278445Z",
+         "created_at":"2021-05-24T23:47:03.278445Z",
+         "id":"kEkTIyZyAF",
+         "status":"invited",
+         "form_id":"K3NF9VO0Ap",
+         "location_id":"glG6bUSeC",
+         "created_by":""
+      },
+      {
+         "updated_at":"2021-05-24T23:25:01.156167Z",
+         "created_at":"2021-05-24T23:25:01.156167Z",
+         "id":"fm9R1yB7k92XhKEFFGBt",
+         "status":"invited",
+         "form_id":"K3NF9VO0ApLycw6gmwMR",
+         "location_id":"glG6bUSeCr66tSAUDzHo",
+         "created_by":""
+      },
+      {
+         "updated_at":"2021-05-24T23:24:15.36479Z",
+         "created_at":"2021-05-24T23:11:43.380386Z",
+         "id":"kttFBzAH3",
+         "status":"done",
+         "form_id":"K3NF9VO0Ap",
+         "location_id":"glG6bUS",
+         "created_by":"",
+         "data":{
+            "appropriate_timing":"3",
+            "audit_type":"ongoing",
+            "comments":null,
+            "econ_haul_radius":"yes",
+            "flow_maintained":"3",
+            "from_known":"yes",
+            "genetic_modified":"yes",
+            "haul_road_condition":"3",
+            "hcv_priority_present":[
+               "carolina-bay"
+            ],
+            "hydrology_altered":"3",
+            "img_inspection":"yes",
+            "land_use_change":"no",
+            "minimized_disturbance":"2",
+            "native_species":"yes",
+            "oil_spill_presence":"3",
+            "origin_wood_documentation":"yes",
+            "overall_tract_compliance":"in",
+            "peatland":"yes",
+            "residual_impact":"2",
+            "rights_violation":"no",
+            "smz_compliant":"yes",
+            "smz_width":null,
+            "soil_erosion_prevention":null,
+            "stream_crossing_stable":"3",
+            "stream_crossings":"yes",
+            "stream_debris_clear":"3",
+            "timber_theft_trespass":"no",
+            "trash_cleanup":"3",
+            "water_features":null,
+            "waterbars_installed":"3",
+            "weland":"no"
+         }
+      }
+   ]
+}
+}
+```
+
+</details>
+
+### GET Form responses by location
+
+```sh
+curl "$GOTRACE_API/v1/locations/$LOCATION_ID/forms/$FORM_ID/responses" \
+  -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer $API_TOKEN"
+```
+
+#### Query Parameters
+
+- `created_after datetime`
+- `created_before datetime`
+
+<details>
+    <summary>Example Response</summary>
+
+```json
+{
+   {
+   "responses":[
+      {
+         "updated_at":"2021-05-25T15:42:01.377693Z",
+         "created_at":"2021-05-25T15:37:27.918248Z",
+         "id":"loCbfjz3o",
+         "status":"done",
+         "form_id":"K3NF9VO0A",
+         "location_id":"glG6bUSe",
+         "created_by":"",
+         "data":{
+            "appropriate_timing":"2",
+            "audit_type":"post",
+            "comments":null,
+            "econ_haul_radius":"no",
+            "flow_maintained":"1",
+            "from_known":"yes",
+            "genetic_modified":"no",
+            "haul_road_condition":"2",
+            "hcv_priority_present":[
+               "low-pocosin"
+            ],
+            "hydrology_altered":"2",
+            "img_inspection":"no",
+            "land_use_change":"yes",
+            "minimized_disturbance":"2",
+            "native_species":"no",
+            "oil_spill_presence":"1",
+            "origin_wood_documentation":"no",
+            "overall_tract_compliance":"in",
+            "peatland":"no",
+            "residual_impact":"1",
+            "rights_violation":"yes",
+            "smz_compliant":"yes",
+            "smz_width":"2",
+            "soil_erosion_prevention":"2",
+            "stream_crossing_stable":"2",
+            "stream_crossings":"no",
+            "stream_debris_clear":"2",
+            "timber_theft_trespass":"yes",
+            "trash_cleanup":"2",
+            "water_features":[
+               "ditches"
+            ],
+            "waterbars_installed":"1",
+            "weland":"yes"
+         }
+      },
+      {
+         "updated_at":"2021-05-25T15:36:50.402077Z",
+         "created_at":"2021-05-25T15:36:50.402077Z",
+         "id":"TITUqoqir",
+         "status":"invited",
+         "form_id":"K3NF9VO0",
+         "location_id":"glG6bUSe",
+         "created_by":""
+      },
+      {
+         "updated_at":"2021-05-25T01:41:31.972429Z",
+         "created_at":"2021-05-25T01:40:32.121555Z",
+         "id":"zhiBZeD68",
+         "status":"done",
+         "form_id":"K3NF9VO0Ap",
+         "location_id":"glG6bUSe",
+         "created_by":"",
+         "data":{
+            "appropriate_timing":"2",
+            "audit_type":"post",
+            "comments":null,
+            "econ_haul_radius":"yes",
+            "flow_maintained":"2",
+            "from_known":"yes",
+            "genetic_modified":"no",
+            "haul_road_condition":"1",
+            "hcv_priority_present":[
+               "low-pocosin"
+            ],
+            "hydrology_altered":"3",
+            "img_inspection":"yes",
+            "land_use_change":"no",
+            "minimized_disturbance":"3",
+            "native_species":"no",
+            "oil_spill_presence":"2",
+            "origin_wood_documentation":"no",
+            "overall_tract_compliance":"in",
+            "peatland":"no",
+            "residual_impact":"2",
+            "rights_violation":"yes",
+            "smz_compliant":"yes",
+            "smz_width":"2",
+            "soil_erosion_prevention":"na",
+            "stream_crossing_stable":"2",
+            "stream_crossings":"yes",
+            "stream_debris_clear":"3",
+            "timber_theft_trespass":"no",
+            "trash_cleanup":"3",
+            "water_features":[
+               "defined-stream"
+            ],
+            "waterbars_installed":"2",
+            "weland":"yes"
+         }
+      },
+      {
+         "updated_at":"2021-05-25T01:38:52.435895Z",
+         "created_at":"2021-05-25T01:37:40.74711Z",
+         "id":"txdE65KOo",
+         "status":"done",
+         "form_id":"K3NF9VO0A",
+         "location_id":"glG6bUS",
+         "created_by":"",
+         "data":{
+            "appropriate_timing":"2",
+            "audit_type":"ongoing",
+            "comments":null,
+            "econ_haul_radius":"no",
+            "flow_maintained":"2",
+            "from_known":"no",
+            "genetic_modified":"yes",
+            "haul_road_condition":"0",
+            "hcv_priority_present":[
+               "atlantic-white-cedar"
+            ],
+            "hydrology_altered":"2",
+            "img_inspection":"yes",
+            "land_use_change":"yes",
+            "minimized_disturbance":"1",
+            "native_species":"yes",
+            "oil_spill_presence":"2",
+            "origin_wood_documentation":"yes",
+            "overall_tract_compliance":"in",
+            "peatland":"yes",
+            "residual_impact":"0",
+            "rights_violation":"no",
+            "smz_compliant":"yes",
+            "smz_width":"0",
+            "soil_erosion_prevention":"2",
+            "stream_crossing_stable":"1",
+            "stream_crossings":"yes",
+            "stream_debris_clear":"3",
+            "timber_theft_trespass":"yes",
+            "trash_cleanup":"2",
+            "water_features":[
+               "defined-stream"
+            ],
+            "waterbars_installed":"2",
+            "weland":"no"
+         }
+      },
+      {
+         "updated_at":"2021-05-24T23:47:03.278445Z",
+         "created_at":"2021-05-24T23:47:03.278445Z",
+         "id":"kEkTIyZyA",
+         "status":"invited",
+         "form_id":"K3NF9VO0A",
+         "location_id":"glG6bUSe",
+         "created_by":""
+      },
+      {
+         "updated_at":"2021-05-24T23:25:01.156167Z",
+         "created_at":"2021-05-24T23:25:01.156167Z",
+         "id":"fm9R1yB7k9",
+         "status":"invited",
+         "form_id":"K3NF9VO0Ap",
+         "location_id":"glG6bUS",
+         "created_by":""
+      },
+      {
+         "updated_at":"2021-05-24T23:24:15.36479Z",
+         "created_at":"2021-05-24T23:11:43.380386Z",
+         "id":"kttFBzAH",
+         "status":"done",
+         "form_id":"K3NF9VO0",
+         "location_id":"glG6bUSe",
+         "created_by":"",
+         "data":{
+            "appropriate_timing":"3",
+            "audit_type":"ongoing",
+            "comments":null,
+            "econ_haul_radius":"yes",
+            "flow_maintained":"3",
+            "from_known":"yes",
+            "genetic_modified":"yes",
+            "haul_road_condition":"3",
+            "hcv_priority_present":[
+               "carolina-bay"
+            ],
+            "hydrology_altered":"3",
+            "img_inspection":"yes",
+            "land_use_change":"no",
+            "minimized_disturbance":"2",
+            "native_species":"yes",
+            "oil_spill_presence":"3",
+            "origin_wood_documentation":"yes",
+            "overall_tract_compliance":"in",
+            "peatland":"yes",
+            "residual_impact":"2",
+            "rights_violation":"no",
+            "smz_compliant":"yes",
+            "smz_width":null,
+            "soil_erosion_prevention":null,
+            "stream_crossing_stable":"3",
+            "stream_crossings":"yes",
+            "stream_debris_clear":"3",
+            "timber_theft_trespass":"no",
+            "trash_cleanup":"3",
+            "water_features":null,
+            "waterbars_installed":"3",
+            "weland":"no"
+         }
+      }
+   ]
+}
+}
+```
+
 </details>
