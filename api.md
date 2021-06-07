@@ -188,8 +188,14 @@ Curl example:
 curl "$GOTRACE_API/v2/orgs/$ORG_ID/loads" \
   -H 'Content-Type: application/json' \
   -H "Authorization: Bearer $API_TOKEN" \
-  --data-binary '{load:{"name":"LOAD_NAME","org_id":"ORG_ID","asset":"ASSET_ID","source_load_ids":SOURCE_LOAD_IDS,"start_point":{"latitude":LATITUDE,"longitude":LONGITUDE}},"paired_ids": ["sample1","sample2"]}}'
+  --data-binary '{load:{"name":"LOAD_NAME","org_id":"ORG_ID","asset":"ASSET_ID","source_load_ids":SOURCE_LOAD_IDS,"start_point":{"latitude":LATITUDE,"longitude":LONGITUDE}},"num_loads":2, "paired_ids": ["sample1","sample2"]}}'
 ```
+
+#### Query Parameters
+You could use either of the following parameters (or both):
+
+- `num_loads amount of loads to create`
+- `paired_ids array of external paired ids`
 
 <details>
     <summary>Example Response</summary>
@@ -395,6 +401,132 @@ curl "$GOTRACE_API/v1/loads/$LOAD_ID/events" \
     "multihash": "QmUiPPL7AMWzKEwKNbCJn5ez4AFViwxEP9jRhFsUcq1jSv",
     "tx_hash": "0x4974668742b70b99308dd02717696aa9f0cb22b58c76ee1f796022f3b425955f"
   }
+}
+```
+</details>
+
+
+### POST Load Events(batch)
+
+
+```sh
+curl "$GOTRACE_API/v2/loads/events" \
+  -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer $API_TOKEN" \
+  --data-binary '{"load_event":{"id":null,"load_id":"W257P3jMJZHg","parent_id":null,"created_by":"qnFOaVV5MZVuMjO","org_id":"4OL3XCCtl0","type":"gps-start","geo_point":{"latitude":54.7087691,"longitude":25.292111799999997}},"load_ids": ["9LZ9Eaz4eG","143CdNCWEGpw"],"paired_ids": ["sample1","sample2"]}'
+```
+
+#### Query Parameters
+You could use either of the following parameters (or both):
+
+- `load_ids array of load ids`
+- `paired_ids array of external paired ids`
+
+<details>
+<summary>Example Response</summary>
+
+```json
+{
+  {
+  "errors": null,
+  "load_events": [
+    {
+      "updated_at": "2021-06-07T17:13:26.426929757+03:00",
+      "created_at": "2021-06-07T17:13:23.864663193+03:00",
+      "id": "il3SaCGKA",
+      "created_by": "qnFOaVV5MZVuMjO",
+      "org_id": "4OL3XCCtl0",
+      "load_id": "9LZ9Eaz4eG",
+      "parent_id": "",
+      "source_load_ids": null,
+      "type": "gps-start",
+      "geo_point": {
+        "latitude": 54.7087691,
+        "longitude": 25.292111799999997
+      },
+      "location_id": "r7UCXVrT",
+      "verified_geo_point": {
+        "latitude": 54.7087528,
+        "longitude": 25.2892653
+      },
+      "fields": null,
+      "shipengine_event": null,
+      "multihash": "QmQF6LFkqWq1KhUGb",
+      "tx_hash": "0x53df5385b77b63191711"
+    },
+    {
+      "updated_at": "2021-06-07T17:13:26.447869082+03:00",
+      "created_at": "2021-06-07T17:13:23.864522891+03:00",
+      "id": "SzTnla1d8x",
+      "created_by": "qnFOaVV5MZVuMjO",
+      "org_id": "4OL3XCCtl0",
+      "load_id": "143CdNCWE",
+      "parent_id": "",
+      "source_load_ids": null,
+      "type": "gps-start",
+      "geo_point": {
+        "latitude": 54.7087691,
+        "longitude": 25.292111799999997
+      },
+      "location_id": "r7UCXVr",
+      "verified_geo_point": {
+        "latitude": 54.7087528,
+        "longitude": 25.2892653
+      },
+      "fields": null,
+      "shipengine_event": null,
+      "multihash": "QmTajvE46XSqCRW6qNMz",
+      "tx_hash": "0xed78ef786c3887196eed22970b"
+    },
+     {
+      "updated_at": "2021-06-07T17:13:30.62297253+03:00",
+      "created_at": "2021-06-07T17:13:29.189617525+03:00",
+      "id": "ye54NNUmD",
+      "created_by": "qnFOaVV5MZVuMjO",
+      "org_id": "4OL3XCCtl0",
+      "load_id": "9LZ9Eaz4e",
+      "parent_id": "",
+      "source_load_ids": null,
+      "type": "gps-start",
+      "geo_point": {
+        "latitude": 54.7087691,
+        "longitude": 25.292111799999997
+      },
+      "location_id": "r7UCXVrT",
+      "verified_geo_point": {
+        "latitude": 54.7087528,
+        "longitude": 25.2892653
+      },
+      "fields": null,
+      "shipengine_event": null,
+      "multihash": "QmVWrtFXWkkf1Z5krz",
+      "tx_hash": "0x89190df9dc6fa9e39150f8e84"
+    },
+    {
+      "updated_at": "2021-06-07T17:13:31.253634042+03:00",
+      "created_at": "2021-06-07T17:13:29.803544631+03:00",
+      "id": "cqARuOnTJ",
+      "created_by": "qnFOaV",
+      "org_id": "4OL3XCCtl0",
+      "load_id": "143CdNCW",
+      "parent_id": "",
+      "source_load_ids": null,
+      "type": "gps-start",
+      "geo_point": {
+        "latitude": 54.7087691,
+        "longitude": 25.292111799999997
+      },
+      "location_id": "r7UCXVrT",
+      "verified_geo_point": {
+        "latitude": 54.7087528,
+        "longitude": 25.2892653
+      },
+      "fields": null,
+      "shipengine_event": null,
+      "multihash": "QmeXNJQqkYLGrKSRNGt",
+      "tx_hash": "0x5c23471b8b6748acadbbf9367f"
+    }
+  ]
 }
 ```
 </details>
