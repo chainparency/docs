@@ -188,8 +188,14 @@ Curl example:
 curl "$GOTRACE_API/v2/orgs/$ORG_ID/loads" \
   -H 'Content-Type: application/json' \
   -H "Authorization: Bearer $API_TOKEN" \
-  --data-binary '{load:{"name":"LOAD_NAME","org_id":"ORG_ID","asset":"ASSET_ID","source_load_ids":SOURCE_LOAD_IDS,"start_point":{"latitude":LATITUDE,"longitude":LONGITUDE}},"paired_ids": ["sample1","sample2"]}}'
+  --data-binary '{load:{"name":"LOAD_NAME","org_id":"ORG_ID","asset":"ASSET_ID","source_load_ids":SOURCE_LOAD_IDS,"start_point":{"latitude":LATITUDE,"longitude":LONGITUDE}},"num_loads":2, "paired_ids": ["sample1","sample2"]}}'
 ```
+
+#### Query Parameters
+You could use either of the following parameters (or both):
+
+- `num_loads amount of loads to create`
+- `paired_ids array of external paired ids`
 
 <details>
     <summary>Example Response</summary>
