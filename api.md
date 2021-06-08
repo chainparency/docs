@@ -413,7 +413,7 @@ curl "$GOTRACE_API/v1/loads/$LOAD_ID/events" \
 curl "$GOTRACE_API/v2/loads/events" \
   -H 'Content-Type: application/json' \
   -H "Authorization: Bearer $API_TOKEN" \
-  --data-binary '{"load_event":{"id":null,"load_id":"W257P3jMJZHg","parent_id":null,"created_by":"qnFOaVV5MZVuMjO","org_id":"4OL3XCCtl0","type":"gps-start","geo_point":{"latitude":54.7087691,"longitude":25.292111799999997}},"load_ids": ["9LZ9Eaz4eG","143CdNCWEGpw"],"paired_ids": ["sample1","sample2"]}'
+  --data-binary '{"load_event":{"org_id":"4OL3XCCtl0","type":"gps-start","geo_point":{"latitude":54.7087691,"longitude":25.292111799999997}},"load_ids": ["9LZ9Eaz4eG","143CdNCWEGpw"],"paired_ids": ["sample1","sample2"]}'
 ```
 
 #### Query Parameters
