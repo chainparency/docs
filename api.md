@@ -255,6 +255,30 @@ You could use either of the following parameters (or both):
 
 </details>
 
+### Publish Load Traces
+
+Make the traces public for a set of load IDs.
+
+```sh
+curl "$GOTRACE_API/v2/loads/publish_trace" \
+  -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer $API_TOKEN" \
+  --data-binary '{"trace_is_public":true,"load_ids":["ABCD","EFGH"]}'
+```
+
+<details>
+    <summary>Example Response</summary>
+
+```json
+{
+  "errors": {
+    "ABCD": "error message"
+  }
+}
+```
+
+</details>
+
 ### GET Loads
 
 List loads for an organization, sorted by recently created.
