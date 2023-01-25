@@ -13,7 +13,7 @@ Please contact us to obtain your API token.
 Add the following header to all of your requests:
 
 ```
-Authorization: Bearer $API_TOKEN
+api-token: $API_TOKEN
 ```
 
 ## Assets
@@ -23,8 +23,8 @@ Authorization: Bearer $API_TOKEN
 ```sh
 curl "$API_URL/v1/orgs/$ORG_ID/assets" \
   -H 'Content-Type: application/json' \
-  -H "Authorization: Bearer $API_TOKEN" \
-  --data-binary '{"name":"Octocat", "description":" }' \
+  -H "api-token: $API_TOKEN" \
+  --data-binary '{"name":"Octocat", "description":"" }' \
 ```
 
 Example Response
@@ -48,14 +48,14 @@ Example Response
 }
 ```
 
-### GET Assets
+### GET Organization Assets
 
 List assets for an organization.
 
 ```sh
 curl "$API_URL/v1/orgs/$ORG_ID/assets" \
   -H 'Content-Type: application/json' \
-  -H "Authorization: Bearer $API_TOKEN" \
+  -H "api-token: $API_TOKEN" \
 ```
 
 Example Response
@@ -76,7 +76,42 @@ Example Response
         "tokenID": "123",
         "documents": "",
         "customFields": "",
-    }
+    },
+    "role": "admin"
+  ]
+}
+```
+
+### GET Assets, created by Organization
+
+List assets, that was created by organization (but could be transferred to someone else).
+
+```sh
+curl "$API_URL/v1/orgs/$ORG_ID/assets/created" \
+  -H 'Content-Type: application/json' \
+  -H "api-token: $API_TOKEN" \
+```
+
+Example Response
+
+```json
+{
+  "assets": [
+    {
+        "updatedAt": "2020-07-15T10:40:08.105771227-05:00",
+        "createdAt": "2020-07-15T10:40:08.105771093-05:00",
+        "id": "LkiEUtJNndhbbz8qfFQW",
+        "orgID": "eboThjQLWfAd79dvQ05O",
+        "name": "Name of asset",
+        "description": "",
+        "image": "https://somewhere.com/abc.png",
+        "category": "",
+        "contractAddress": "0xABC",
+        "tokenID": "123",
+        "documents": "",
+        "customFields": "",
+    },
+    "role": "admin"
   ]
 }
 ```
@@ -86,7 +121,7 @@ Example Response
 ```sh
 curl "$API_URL/v1/assets/$ASSET_ID" \
   -H 'Content-Type: application/json' \  
-  -H "Authorization: Bearer $API_TOKEN" \
+  -H "api-token: $API_TOKEN" \
 ```
 
 Example Response
@@ -106,7 +141,8 @@ Example Response
     "tokenID": "123",
     "documents": "",
     "customFields": "",
-  }
+  },
+  "role": "admin"
 }
 ```
 
