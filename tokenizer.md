@@ -8,7 +8,7 @@ Production: `API_URL=https://tokenizer-api.chainparency.com`
 
 ## Authorization
 
-Please contact us to obtain your API token. 
+To obtain your API token, navigate to [Tokeniezer](https://tokenizer.chainparency.com), select an organization, open Admin tab and generate api key.
 
 Add the following header to all of your requests:
 
@@ -24,7 +24,7 @@ Authorization: Bearer $API_TOKEN
 curl "$API_URL/v1/orgs/$ORG_ID/assets" \
   -H 'Content-Type: application/json' \
   -H "Authorization: Bearer $API_TOKEN" \
-  --data-binary '{"name":"Octocat", "description":" }' \
+  --data-binary '{"name":"Octocat", "description":"" }' \
 ```
 
 Example Response
@@ -38,17 +38,23 @@ Example Response
     "orgID": "eboThjQLWfAd79dvQ05O",
     "name": "Name of asset",
     "description": "",
+    "externalID": "",
+    "createdBy": "tnbOrxNaHwGqh9gwDv0y",
+    "category": "company",
     "image": "https://somewhere.com/abc.png",
-    "category": "",
+    "tokenURI": "https://somewhere.com/token",
     "contractAddress": "0xABC",
-    "tokenID": "123",
-    "documents": "",
-    "customFields": "",
+    "tokenID": 123,
+    "mintTx": "0xABC",
+    "owner": "0xABC",
+    "documents": [],
+    "customFields": [],
+    "contractAddressTokens": "0xABC",
   }
 }
 ```
 
-### GET Assets
+### GET Assets, owned by Organization
 
 List assets for an organization.
 
@@ -70,14 +76,61 @@ Example Response
         "orgID": "eboThjQLWfAd79dvQ05O",
         "name": "Name of asset",
         "description": "",
+        "externalID": "",
+        "createdBy": "tnbOrxNaHwGqh9gwDv0y",
+        "category": "company",
         "image": "https://somewhere.com/abc.png",
-        "category": "",
+        "tokenURI": "https://somewhere.com/token",
         "contractAddress": "0xABC",
-        "tokenID": "123",
-        "documents": "",
-        "customFields": "",
+        "tokenID": 123,
+        "mintTx": "0xABC",
+        "owner": "0xABC",
+        "documents": [],
+        "customFields": [],
+        "contractAddressTokens": "0xABC",
     }
-  ]
+  ],
+  "role": "admin"
+}
+```
+
+### GET Assets, created by Organization
+
+List assets that was created by organization.
+
+```sh
+curl "$API_URL/v1/orgs/$ORG_ID/assets" \
+  -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer $API_TOKEN" \
+```
+
+Example Response
+
+```json
+{
+  "assets": [
+    {
+        "updatedAt": "2020-07-15T10:40:08.105771227-05:00",
+        "createdAt": "2020-07-15T10:40:08.105771093-05:00",
+        "id": "LkiEUtJNndhbbz8qfFQW",
+        "orgID": "eboThjQLWfAd79dvQ05O",
+        "name": "Name of asset",
+        "description": "",
+        "externalID": "",
+        "createdBy": "tnbOrxNaHwGqh9gwDv0y",
+        "category": "company",
+        "image": "https://somewhere.com/abc.png",
+        "tokenURI": "https://somewhere.com/token",
+        "contractAddress": "0xABC",
+        "tokenID": 123,
+        "mintTx": "0xABC",
+        "owner": "0xABC",
+        "documents": [],
+        "customFields": [],
+        "contractAddressTokens": "0xABC",
+    }
+  ],
+  "role": "admin"
 }
 ```
 
@@ -100,13 +153,20 @@ Example Response
     "orgID": "eboThjQLWfAd79dvQ05O",
     "name": "Name of asset",
     "description": "",
+    "externalID": "",
+    "createdBy": "tnbOrxNaHwGqh9gwDv0y",
+    "category": "company",
     "image": "https://somewhere.com/abc.png",
-    "category": "",
+    "tokenURI": "https://somewhere.com/token",
     "contractAddress": "0xABC",
-    "tokenID": "123",
-    "documents": "",
-    "customFields": "",
-  }
+    "tokenID": 123,
+    "mintTx": "0xABC",
+    "owner": "0xABC",
+    "documents": [],
+    "customFields": [],
+    "contractAddressTokens": "0xABC",
+  },
+  "role": "admin"
 }
 ```
 
