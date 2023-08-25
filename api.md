@@ -464,6 +464,14 @@ Updates load fields. Requires `fields` field, which is treated as a set of field
 Mutable fields include `name` (string) and `data` (object). Rather than setting `data` as a whole (which will overwrite),
 one or more individual fields can be updated using dot notation (`data.*`).  
 
+##### `note`
+
+Event type, that is used to add any additional load info (files, text etc) to load history (load feed). 
+
+##### `form`
+
+Event type, that is used to add custom fields form to load history (load feed). Requires **form_id** and `form_data` fields. **form_id** should contain id of form, which is attached. `form_data` contains fields values, based on form.
+
 <details>   
 <summary>Example data</summary>
 
@@ -487,6 +495,72 @@ one or more individual fields can be updated using dot notation (`data.*`).
 ```
 </details>
 
+<details>
+<summary>Example form_data</summary>
+
+```json
+{
+  "field_1": "value_1",
+  "field_2": "value_2"
+}
+```
+</details>
+
+### POST Load Events (with files)
+
+
+```sh
+curl "$GOTRACE_API/v1/loads/$LOAD_ID/events" \
+  -H "Authorization: Bearer $API_TOKEN" \
+  -F 0=@photo.png
+  -F 1=@document.pdf
+  -F event='{"load_id":"2gcjqFd5pEVNwNhhH9u9","created_by":"p8Ov0RnOO9U1fVRJoa5R8JHcOLm1","org_id":"UEk2tZFKAF1LmkfzgbyA","type":"gps-start","geo_point":{"latitude":41.8781,"longitude":-87.6298}}'
+```
+
+Same endpoint, but data is sent in multipart/form-data format. Same event entity is stored in 'event' key as json string. Files are stored in incremented numbers keys (strings that starts from "0"). For example, first file is sotred in 0 key, second - in 1 key, etc. Files are limited by **50 MB**.
+
+<details>
+<summary>Example Response</summary>
+
+```json
+{
+  "event": {
+    "updated_at": "2020-07-20T07:53:17.847251591-05:00",
+    "created_at": "2020-07-20T07:53:16.481100112-05:00",
+    "id": "8pAbKFm28vv1LZ3cCqRO",
+    "created_by": "p8Ov0RnOO9U1fVRJoa5R8JHcOLm1",
+    "org_id": "UEk2tZFKAF1LmkfzgbyA",
+    "load_id": "2gcjqFd5pEVNwNhhH9u9",
+    "parent_id": "",
+    "source_load_ids": null,
+    "type": "gps-start",
+    "geo_point": {
+      "latitude": 41.8781,
+      "longitude": -87.6298
+    },
+    "location_id": "5peH6IvKncoDZMVLEleK",
+    "verified_geo_point": {
+      "latitude": 41.8781,
+      "longitude": -87.6298
+    },
+    "media": [
+      {
+        "url": "https://go-supply-chain.appspot.com.storage.googleapis.com/123432956643768.png",
+        "type": "image/*",
+        "filename": "photo.png",
+      },
+      {
+        "url": "https://go-supply-chain.appspot.com.storage.googleapis.com/123846128364091.pdf",
+        "type": "*.pdf",
+        "filename": "document.pdf",
+      },
+    ]
+    "multihash": "QmUiPPL7AMWzKEwKNbCJn5ez4AFViwxEP9jRhFsUcq1jSv",
+    "tx_hash": "0x4974668742b70b99308dd02717696aa9f0cb22b58c76ee1f796022f3b425955f"
+  }
+}
+```
+</details>
 
 ### POST Load Events(batch)
 
@@ -1724,6 +1798,75 @@ curl "$GOTRACE_API/v2/orgs/$ORG_ID/locations" \
             }
         }
     ]
+}
+```
+</details>
+
+### POST Location Events (with files)
+
+
+```sh
+curl "$GOTRACE_API/v1/locations/$LOCATION_ID/events" \
+  -H "Authorization: Bearer $API_TOKEN" \
+  -F 0=@photo.png
+  -F 1=@document.pdf
+  -F event='{"load_id":"2gcjqFd5pEVNwNhhH9u9","created_by":"p8Ov0RnOO9U1fVRJoa5R8JHcOLm1","org_id":"UEk2tZFKAF1LmkfzgbyA","type":"gps-start","geo_point":{"latitude":41.8781,"longitude":-87.6298}}'
+```
+
+Data is sent in multipart/form-data format. Event entity is stored in 'event' key as json string. Files are stored in incremented numbers keys (strings that starts from "0"). For example, first file is sotred in 0 key, second - in 1 key, etc. Files are limited by **50 MB**.
+
+<details>
+<summary>Example Response</summary>
+
+```json
+{
+  "event": {
+    "updated_at": "2020-07-20T07:53:17.847251591-05:00",
+    "created_at": "2020-07-20T07:53:16.481100112-05:00",
+    "id": "8pAbKFm28vv1LZ3cCqRO",
+    "created_by": "p8Ov0RnOO9U1fVRJoa5R8JHcOLm1",
+    "org_id": "UEk2tZFKAF1LmkfzgbyA",
+    "entity": "location",
+    "entity_id": "2gcjqFd5pEVNwNhhH9u9",
+    "type": "note",
+    "geo_point": {
+      "latitude": 41.8781,
+      "longitude": -87.6298
+    },
+    "media": [
+      {
+        "url": "https://go-supply-chain.appspot.com.storage.googleapis.com/123432956643768.png",
+        "type": "image/*",
+        "filename": "photo.png",
+      },
+      {
+        "url": "https://go-supply-chain.appspot.com.storage.googleapis.com/123846128364091.pdf",
+        "type": "*.pdf",
+        "filename": "document.pdf",
+      }
+    ]
+  }
+}
+```
+</details>
+
+#### Event Types
+
+##### `note`
+
+Event type, that is used to add any additional location info (files, text etc) to location history (location feed). 
+
+##### `form`
+
+Event type, that is used to add custom fields form to location history (location feed). Requires **form_id** and `form_data` fields. **form_id** should contain id of form, which is attached. `form_data` contains fields values, based on form.
+
+<details>
+<summary>Example form_data</summary>
+
+```json
+{
+  "field_1": "value_1",
+  "field_2": "value_2"
 }
 ```
 </details>
