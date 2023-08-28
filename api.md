@@ -508,6 +508,13 @@ Event type, that is used to add custom fields form to load history (load feed). 
 
 ### POST Load Events (with files)
 
+This uses the same endpoint as above, but data must be sent in multipart/form-data format. 
+
+One part must have the name `event` and should contain the same JSON object as defined above. 
+
+File parts use incremented numbers as the name, starting with 0. So the first file part must be named `0`, the second is `1` and so on.
+
+Files are limited to **50 MB**.
 
 ```sh
 curl "$GOTRACE_API/v1/loads/$LOAD_ID/events" \
@@ -516,8 +523,6 @@ curl "$GOTRACE_API/v1/loads/$LOAD_ID/events" \
   -F 1=@document.pdf
   -F event='{"load_id":"2gcjqFd5pEVNwNhhH9u9","created_by":"p8Ov0RnOO9U1fVRJoa5R8JHcOLm1","org_id":"UEk2tZFKAF1LmkfzgbyA","type":"gps-start","geo_point":{"latitude":41.8781,"longitude":-87.6298}}'
 ```
-
-Same endpoint, but data is sent in multipart/form-data format. Same event entity is stored in 'event' key as json string. Files are stored in incremented numbers keys (strings that starts from "0"). For example, first file is sotred in 0 key, second - in 1 key, etc. Files are limited by **50 MB**.
 
 <details>
 <summary>Example Response</summary>
@@ -563,7 +568,6 @@ Same endpoint, but data is sent in multipart/form-data format. Same event entity
 </details>
 
 ### POST Load Events(batch)
-
 
 ```sh
 curl "$GOTRACE_API/v2/loads/events" \
