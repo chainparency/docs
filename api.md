@@ -122,6 +122,8 @@ curl "$GOTRACE_API/v1/assets/$ASSET_ID" \
 }
 ```
 
+If the load must have an asset, the only field that must be filled in is asset (by ID of needed asset). Initial values of fields are always empty. To set them use **POST Load Event** with type 'update'.
+
 Curl example:
 
 ```sh
@@ -385,6 +387,72 @@ curl "$GOTRACE_API/v1/loads/$LOAD_ID" \
 ```
 </details>
 
+To show load custom fields (if `load.asset` contains any asset ID) follow next steps:
+- get `asset` entity. To get it use **GET Asset by ID** endpoint.
+- build custom fields based on `asset.fields` field. `asset.fields` field is array of field objects. 
+- to fill fields values use `load.data` field. `load.data` field is object with key/value structure, where key - is name of field (same as in `asset.fields`) and value - is value of field. If key/value is missing (`asset.field` has field, that has no record in `load.data`) field is empty.
+
+<details>
+    <summary>Example how to display load custom fields</summary>
+
+
+We have load with `asset` (asset ID is `bx3GtRgE90FLi1CeZCif`) and with `data` with only 1 record (for field with name `field_1`).
+
+**Load**
+```json
+{
+    "updated_at": "2020-07-15T15:44:27.009721Z",
+    "created_at": "2020-07-15T15:44:24.503183Z",
+    "id": "bx3GtRgE90FLi1CeZCif",
+    "deleted_at": null,
+    "name": "Named Load",
+    "asset": "LkiEUtJNndhbbz8qfFQW",
+    "paired_id": "",
+    "created_by": "p8Ov0RnOO9U1fVRJoa5R8JHcOLm1",
+    "latest_user_id": "p8Ov0RnOO9U1fVRJoa5R8JHcOLm1",
+    "org_id": "eboThjQLWfAd79dvQ05O",
+    "latest_org_id": "eboThjQLWfAd79dvQ05O",
+    "parent_id": "",
+    "status": "Stopped",
+    "source_load_ids": null,
+    "start_location_id": "5peH6IvKncoDZMVLEleK",
+    "start_point": null,
+    "latest_location_id": "5peH6IvKncoDZMVLEleK",
+    "latest_point": null,
+    "latest_event_type": "created",
+    "trace_is_public": false,
+    "is_container": false,
+    "last_committed_event_at": "2020-07-15T15:44:24.968239Z",
+    "data": { "field_1": "any text value" }
+}
+```
+
+We should get asset of this load. To get it we use `$GOTRACE_API/v1/assets/bx3GtRgE90FLi1CeZCif` endpoint.
+
+**Asset**
+```json
+{
+    "updated_at": "2020-07-15T15:40:08.105771Z",
+    "created_at": "2020-07-15T15:40:08.105771Z",
+    "id": "bx3GtRgE90FLi1CeZCif",
+    "org_id": "eboThjQLWfAd79dvQ05O",
+    "deleted_at": null,
+    "name": "Named Asset",
+    "type": "",
+    "is_container": false,
+    "status": "active",
+    "fields": [
+      {"name": "field_1", "type": "text", "choices": null},
+      {"name": "field_2", "type": "number", "choices": null},
+    ]
+}
+```
+
+So, we should show 2 custom fields:
+- text field `field_1` with "any text value" value
+- number field `field_2` with empty value
+</details>
+
 ### POST Load Event
 
 
@@ -472,26 +540,153 @@ Event type, that is used to add any additional load info (files, text etc) to lo
 
 Event type, that is used to add custom fields form to load history (load feed). Requires **form_id** and `form_data` fields. **form_id** should contain id of form, which is attached. `form_data` contains fields values, based on form.
 
-<details>   
-<summary>Example data</summary>
 
+<details>
+    <summary>Example how to change all custom fields values</summary>
+
+**Load**
 ```json
 {
-  "name": "new name",
-  "data": {"custom": "field"}
+    "updated_at": "2020-07-15T15:44:27.009721Z",
+    "created_at": "2020-07-15T15:44:24.503183Z",
+    "id": "bx3GtRgE90FLi1CeZCif",
+    "deleted_at": null,
+    "name": "Named Load",
+    "asset": "LkiEUtJNndhbbz8qfFQW",
+    "paired_id": "",
+    "created_by": "p8Ov0RnOO9U1fVRJoa5R8JHcOLm1",
+    "latest_user_id": "p8Ov0RnOO9U1fVRJoa5R8JHcOLm1",
+    "org_id": "eboThjQLWfAd79dvQ05O",
+    "latest_org_id": "eboThjQLWfAd79dvQ05O",
+    "parent_id": "",
+    "status": "Stopped",
+    "source_load_ids": null,
+    "start_location_id": "5peH6IvKncoDZMVLEleK",
+    "start_point": null,
+    "latest_location_id": "5peH6IvKncoDZMVLEleK",
+    "latest_point": null,
+    "latest_event_type": "created",
+    "trace_is_public": false,
+    "is_container": false,
+    "last_committed_event_at": "2020-07-15T15:44:24.968239Z",
+    "data": { "field_1": "any text value" }
 }
+```
+
+**Asset**
+```json
+{
+    "updated_at": "2020-07-15T15:40:08.105771Z",
+    "created_at": "2020-07-15T15:40:08.105771Z",
+    "id": "bx3GtRgE90FLi1CeZCif",
+    "org_id": "eboThjQLWfAd79dvQ05O",
+    "deleted_at": null,
+    "name": "Named Asset",
+    "type": "",
+    "is_container": false,
+    "status": "active",
+    "fields": [
+      {"name": "field_1", "type": "text", "choices": null},
+      {"name": "field_2", "type": "number", "choices": null},
+    ]
+}
+```
+
+To change all fields values need to create such event:
+
+**Event**
+```json
+{
+    "org_id": "eboThjQLWfAd79dvQ05O",
+    "load_id": "bx3GtRgE90FLi1CeZCif",
+    "type": "updated",
+    "fields": {
+      "data": {
+        "field_1": "new field 1 text value",
+        "field_2": 5
+      }
+    }
+  }
+```
+
+**Curl example**
+```sh
+curl "$GOTRACE_API/v1/loads/bx3GtRgE90FLi1CeZCif/events" \
+  -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer $API_TOKEN" \
+  --data-binary '{"org_id": "eboThjQLWfAd79dvQ05O","load_id": "bx3GtRgE90FLi1CeZCif","type": "updated","fields": {"data": {"field_1": "new field 1 text value","field_2": 5}}}'
 ```
 </details>
 
 <details>
-<summary>Example data.*</summary>
+    <summary>Example how to change one custom field value</summary>
 
+**Load**
 ```json
 {
-  "name": "new name",
-  "data.custom": "field",
-  "data.custom2": "value"
+    "updated_at": "2020-07-15T15:44:27.009721Z",
+    "created_at": "2020-07-15T15:44:24.503183Z",
+    "id": "bx3GtRgE90FLi1CeZCif",
+    "deleted_at": null,
+    "name": "Named Load",
+    "asset": "LkiEUtJNndhbbz8qfFQW",
+    "paired_id": "",
+    "created_by": "p8Ov0RnOO9U1fVRJoa5R8JHcOLm1",
+    "latest_user_id": "p8Ov0RnOO9U1fVRJoa5R8JHcOLm1",
+    "org_id": "eboThjQLWfAd79dvQ05O",
+    "latest_org_id": "eboThjQLWfAd79dvQ05O",
+    "parent_id": "",
+    "status": "Stopped",
+    "source_load_ids": null,
+    "start_location_id": "5peH6IvKncoDZMVLEleK",
+    "start_point": null,
+    "latest_location_id": "5peH6IvKncoDZMVLEleK",
+    "latest_point": null,
+    "latest_event_type": "created",
+    "trace_is_public": false,
+    "is_container": false,
+    "last_committed_event_at": "2020-07-15T15:44:24.968239Z",
+    "data": { "field_1": "any text value" }
 }
+```
+
+**Asset**
+```json
+{
+    "updated_at": "2020-07-15T15:40:08.105771Z",
+    "created_at": "2020-07-15T15:40:08.105771Z",
+    "id": "bx3GtRgE90FLi1CeZCif",
+    "org_id": "eboThjQLWfAd79dvQ05O",
+    "deleted_at": null,
+    "name": "Named Asset",
+    "type": "",
+    "is_container": false,
+    "status": "active",
+    "fields": [
+      {"name": "field_1", "type": "text", "choices": null},
+      {"name": "field_2", "type": "number", "choices": null},
+    ]
+}
+```
+
+To change one field (for example `field_2`) value need to create such event:
+
+**Event**
+```json
+{
+    "org_id": "eboThjQLWfAd79dvQ05O",
+    "load_id": "bx3GtRgE90FLi1CeZCif",
+    "type": "updated",
+    "fields": { "data.field_2": 5 }
+  }
+```
+
+**Curl example**
+```sh
+curl "$GOTRACE_API/v1/loads/bx3GtRgE90FLi1CeZCif/events" \
+  -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer $API_TOKEN" \
+  --data-binary '{"org_id": "eboThjQLWfAd79dvQ05O","load_id": "bx3GtRgE90FLi1CeZCif","type": "updated","fields": { "data.field_2": 5 }}'
 ```
 </details>
 
@@ -506,7 +701,7 @@ Event type, that is used to add custom fields form to load history (load feed). 
 ```
 </details>
 
-### POST Load Events (with files)
+### POST Load Event (with files)
 
 This uses the same endpoint as above, but data must be sent in multipart/form-data format. 
 
@@ -567,7 +762,7 @@ curl "$GOTRACE_API/v1/loads/$LOAD_ID/events" \
 ```
 </details>
 
-### POST Load Events(batch)
+### POST Load Events (batch)
 
 ```sh
 curl "$GOTRACE_API/v2/loads/events" \
