@@ -956,6 +956,17 @@ curl "$GOTRACE_API/v1/loads/$LOAD_ID/hide" \
 
 Example Response: see [GET Load by ID](#GET-Load-by-ID) 
 
+### Set/Update Load PairedID
+
+```sh
+curl "$GOTRACE_API/v1/loads/$LOAD_ID/paired" \
+  -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer $API_TOKEN"
+  --data-binary '{"paired_id":$PAIRED_ID}'
+```
+
+Example Response: see [GET Load by ID](#GET-Load-by-ID) 
+
 ### GET Supply Graph
 
 ```sh
