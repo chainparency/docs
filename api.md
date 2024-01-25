@@ -41,7 +41,7 @@ Adds form to organization feed. Requires `form_id` and `form_data` fields.
 ```sh
 curl -X POST "$GOTRACE_API/v1/orgs/$ORG_ID/events" \
   -H "Authorization: Bearer $API_TOKEN" \
-  --form-string 'event={"type": "note", "geo_point": {"latitude": 41.8781, "longitude": -87.6298}, "form": "text", "form_id": "bx3GtRgE90FLi1CeZCif", "form_data": { "first_field": "some text" }}' \
+  --form-string 'event={"type": "form", "geo_point": {"latitude": 41.8781, "longitude": -87.6298}, "note": "text", "form_id": "bx3GtRgE90FLi1CeZCif", "form_data": { "first_field": "some text" }}' \
   --form '0=@fullPathToFile;filename=pic.png' \
 ```
 
