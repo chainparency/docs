@@ -22,11 +22,27 @@ Adds new event to organization feed. Multipart/form-data request that has next k
 - '0' ('1', '2' etc) optional parameters, that contains files to upload/attach to event. Should start from '0' and increment by 1.
   If any key will be skipped - nex file won't be added. For example: request contains '0', '1', '3', '4' file parts. Only '0' and '1' files will be uploaded.
 
+File attaching:
+- for every file, needed to be attached add form record (-- form 'key=value')
+- form record 'key' should be number of file (starting from 0)
+- form record 'value' should be full path to file, starting with '@' symbol
+- also file name can be saved, by adding ';filename=initialFileName' to value
+
+#### Event Types
+
+##### `note`
+
+Adds text/geolocation/files to organization feed.
+
+##### `form`
+
+Adds form to organization feed. Requires `form_id` and `form_data` fields.
+
 ```sh
 curl -X POST "$GOTRACE_API/v1/orgs/$ORG_ID/events" \
   -H "Authorization: Bearer $API_TOKEN" \
-  --form-string 'event={"type": "note", "geo_point": {"latitude": 41.8781, "longitude": -87.6298}, "note": "text", "form_id": "bx3GtRgE90FLi1CeZCif", "form_data": { "first_field": "some text" },}' \
-  --form '0=@localfile;filename=pic.png' \
+  --form-string 'event={"type": "note", "geo_point": {"latitude": 41.8781, "longitude": -87.6298}, "form": "text", "form_id": "bx3GtRgE90FLi1CeZCif", "form_data": { "first_field": "some text" }}' \
+  --form '0=@fullPathToFile;filename=pic.png' \
 ```
 
 <details>
@@ -42,7 +58,7 @@ curl -X POST "$GOTRACE_API/v1/orgs/$ORG_ID/events" \
     "entity_id": "eboThjQLWfAd79dvQ05O",
     "entity": "org",
     "deleted_at": null,
-    "type": "note",
+    "type": "form",
     "geo_point": {
       "latitude": 41.8781,
       "longitude": -87.6298
@@ -63,16 +79,6 @@ curl -X POST "$GOTRACE_API/v1/orgs/$ORG_ID/events" \
 }
 ```
 </details>
-
-#### Event Types
-
-##### `note`
-
-Adds text/geolocation/files to organization feed.
-
-##### `form`
-
-Adds form to organization feed. Requires `form_id` and `form_data` fields.
 
 ### GET Organization Events by ID
 
