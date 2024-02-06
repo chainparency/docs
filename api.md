@@ -21,6 +21,7 @@ Adds new event to organization feed. Multipart/form-data request that has next k
 - 'event' required parameter, that contains json of new event
 - '0' ('1', '2' etc) optional parameters, that contains files to upload/attach to event. Should start from '0' and increment by 1.
   If any key will be skipped - nex file won't be added. For example: request contains '0', '1', '3', '4' file parts. Only '0' and '1' files will be uploaded.
+  Files are limited to **50 MB**.
 
 #### File attaching:
 - for every file, needed to be attached add form record (-- form 'key=value')
@@ -42,7 +43,7 @@ Adds form to organization feed. Requires `form_id` and `form_data` fields.
 curl -X POST "$GOTRACE_API/v1/orgs/$ORG_ID/events" \
   -H "Authorization: Bearer $API_TOKEN" \
   --form-string 'event={"type": "note", "geo_point": {"latitude": 41.8781, "longitude": -87.6298}, "note": "text" }' \
-  --form '0=@fullPathToFile;filename=pic.png' \
+  --form '0=@fullPathToFile;filename=pic.png'
 ```
 
 <details>
@@ -82,7 +83,7 @@ List events for a organization.
 
 ```sh
 curl "$GOTRACE_API/v1/orgs/$ORG_ID/events" \
-  -H "Authorization: Bearer $API_TOKEN" \
+  -H "Authorization: Bearer $API_TOKEN"
 ```
 
 <details>
@@ -130,7 +131,7 @@ curl "$GOTRACE_API/v1/orgs/$ORG_ID/events" \
 curl "$GOTRACE_API/v1/orgs/$ORG_ID/assets" \
   -H 'Content-Type: application/json' \
   -H "Authorization: Bearer $API_TOKEN" \
-  --data-binary '{"name":"Octocat","org_id":"ORG_ID","is_container":true,"status":"active"}' \
+  --data-binary '{"name":"Octocat","org_id":"ORG_ID","is_container":true,"status":"active"}'
 ```
 
 <details>
@@ -160,7 +161,7 @@ List assets for an organization, sorted by recently created.
 ```sh
 curl "$GOTRACE_API/v1/orgs/$ORG_ID/assets" \
   -H 'Content-Type: application/json' \
-  -H "Authorization: Bearer $API_TOKEN" \
+  -H "Authorization: Bearer $API_TOKEN"
 ```
 
 <details>
@@ -190,7 +191,7 @@ curl "$GOTRACE_API/v1/orgs/$ORG_ID/assets" \
 ```sh
 curl "$GOTRACE_API/v1/assets/$ASSET_ID" \
   -H 'Content-Type: application/json' \  
-  -H "Authorization: Bearer $API_TOKEN" \
+  -H "Authorization: Bearer $API_TOKEN"
 ```
 
 <details>
@@ -397,7 +398,7 @@ List loads for an organization, sorted by recently created.
 ```sh
 curl "$GOTRACE_API/v1/orgs/$ORG_ID/loads" \
   -H 'Content-Type: application/json' \
-  -H "Authorization: Bearer $API_TOKEN" \
+  -H "Authorization: Bearer $API_TOKEN"
 ```
 
 #### Query Parameters
@@ -460,7 +461,7 @@ curl "$GOTRACE_API/v1/orgs/0pFkVHqMtoQK5tB6EiC8/loads?latest_org=true&include_hi
 ```sh
 curl "$GOTRACE_API/v1/loads/$LOAD_ID" \
   -H 'Content-Type: application/json' \
-  -H "Authorization: Bearer $API_TOKEN" \
+  -H "Authorization: Bearer $API_TOKEN"
 ```
 
 <details>
@@ -823,9 +824,9 @@ Files are limited to **50 MB**.
 ```sh
 curl "$GOTRACE_API/v1/loads/$LOAD_ID/events" \
   -H "Authorization: Bearer $API_TOKEN" \
-  -F 0=@photo.png
-  -F 1=@document.pdf
-  -F event='{"load_id":"2gcjqFd5pEVNwNhhH9u9","created_by":"p8Ov0RnOO9U1fVRJoa5R8JHcOLm1","org_id":"UEk2tZFKAF1LmkfzgbyA","type":"gps-start","geo_point":{"latitude":41.8781,"longitude":-87.6298}}'
+  -F 0=@photo.png \
+  -F 1=@document.pdf \
+  -F event='{"load_id":"2gcjqFd5pEVNwNhhH9u9","created_by":"p8Ov0RnOO9U1fVRJoa5R8JHcOLm1","org_id":"UEk2tZFKAF1LmkfzgbyA","type":"note","geo_point":{"latitude":41.8781,"longitude":-87.6298}}'
 ```
 
 <details>
@@ -1003,8 +1004,7 @@ List events for a load.
 ```sh
 curl "$GOTRACE_API/v1/loads/$LOAD_ID/events" \
   -H 'Content-Type: application/json' \
-  -H "Authorization: Bearer $API_TOKEN" \
-
+  -H "Authorization: Bearer $API_TOKEN"
 ```
 
 #### Query Parameters
@@ -1059,7 +1059,7 @@ Example Response: see [GET Loads](#GET-Loads)
 ```sh
 curl "$GOTRACE_API/v1/loads/$LOAD_ID/hide" \
   -H 'Content-Type: application/json' \
-  -H "Authorization: Bearer $API_TOKEN"
+  -H "Authorization: Bearer $API_TOKEN" \
   --data-binary '{"hidden":true}'
 ```
 
@@ -1070,7 +1070,7 @@ Example Response: see [GET Load by ID](#GET-Load-by-ID)
 ```sh
 curl "$GOTRACE_API/v1/loads/$LOAD_ID/paired" \
   -H 'Content-Type: application/json' \
-  -H "Authorization: Bearer $API_TOKEN"
+  -H "Authorization: Bearer $API_TOKEN" \
   --data-binary '{"paired_id":$PAIRED_ID}'
 ```
 
@@ -2127,9 +2127,9 @@ curl "$GOTRACE_API/v2/orgs/$ORG_ID/locations" \
 ```sh
 curl "$GOTRACE_API/v1/locations/$LOCATION_ID/events" \
   -H "Authorization: Bearer $API_TOKEN" \
-  -F 0=@photo.png
-  -F 1=@document.pdf
-  -F event='{"load_id":"2gcjqFd5pEVNwNhhH9u9","created_by":"p8Ov0RnOO9U1fVRJoa5R8JHcOLm1","org_id":"UEk2tZFKAF1LmkfzgbyA","type":"gps-start","geo_point":{"latitude":41.8781,"longitude":-87.6298}}'
+  -F 0=@photo.png \
+  -F 1=@document.pdf \
+  -F event='{"load_id":"2gcjqFd5pEVNwNhhH9u9","created_by":"p8Ov0RnOO9U1fVRJoa5R8JHcOLm1","org_id":"UEk2tZFKAF1LmkfzgbyA","type":"note","geo_point":{"latitude":41.8781,"longitude":-87.6298}}'
 ```
 
 Data is sent in multipart/form-data format. Event entity is stored in 'event' key as json string. Files are stored in incremented numbers keys (strings that starts from "0"). For example, first file is sotred in 0 key, second - in 1 key, etc. Files are limited by **50 MB**.
@@ -2196,7 +2196,7 @@ Event type, that is used to add custom fields form to location history (location
 
 ```sh
 curl "$GOTRACE_API/v1/events/$EVENT_ID" \
-  -H "Authorization: Bearer $API_TOKEN" \
+  -H "Authorization: Bearer $API_TOKEN"
 ```
 
 <details>
