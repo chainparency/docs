@@ -41,7 +41,7 @@ Adds form to organization feed. Requires `form_id` and `form_data` fields.
 ```sh
 curl -X POST "$GOTRACE_API/v1/orgs/$ORG_ID/events" \
   -H "Authorization: Bearer $API_TOKEN" \
-  --form-string 'event={"type": "form", "geo_point": {"latitude": 41.8781, "longitude": -87.6298}, "note": "text", "form_id": "bx3GtRgE90FLi1CeZCif", "form_data": { "first_field": "some text" }}' \
+  --form-string 'event={"type": "note", "geo_point": {"latitude": 41.8781, "longitude": -87.6298}, "note": "text" }' \
   --form '0=@fullPathToFile;filename=pic.png' \
 ```
 
@@ -58,7 +58,7 @@ curl -X POST "$GOTRACE_API/v1/orgs/$ORG_ID/events" \
     "entity_id": "eboThjQLWfAd79dvQ05O",
     "entity": "org",
     "deleted_at": null,
-    "type": "form",
+    "type": "note",
     "geo_point": {
       "latitude": 41.8781,
       "longitude": -87.6298
@@ -70,11 +70,7 @@ curl -X POST "$GOTRACE_API/v1/orgs/$ORG_ID/events" \
         "type": "image/jpeg",
         "filename": "pic.png"
       }
-    ],
-    "form_id": "bx3GtRgE90FLi1CeZCif",
-    "form_data": {
-      "first_field": "some text"
-    },
+    ]
   }
 }
 ```
@@ -2190,6 +2186,46 @@ Event type, that is used to add custom fields form to location history (location
 {
   "field_1": "value_1",
   "field_2": "value_2"
+}
+```
+</details>
+
+## Events
+
+### GET Event by ID (only for organization/location events)
+
+```sh
+curl "$GOTRACE_API/v1/events/$EVENT_ID" \
+  -H "Authorization: Bearer $API_TOKEN" \
+```
+
+<details>
+    <summary>Example Response</summary>
+
+```json
+{
+  "event": {
+    "updated_at": "2020-07-15T10:40:08.105771227-05:00",
+    "created_at": "2020-07-15T10:40:08.105771093-05:00",
+    "id": "LkiEUtJNndhbbz8qfFQW",
+    "org_id": "eboThjQLWfAd79dvQ05O",
+    "entity_id": "eboThjQLWfAd79dvQ05O",
+    "entity": "org",
+    "deleted_at": null,
+    "type": "note",
+    "geo_point": {
+      "latitude": 41.8781,
+      "longitude": -87.6298
+    },
+    "note": "text",
+    "media": [
+      {
+        "url": "http://some_url/1.png",
+        "type": "image/jpeg",
+        "filename": "pic.png"
+      }
+    ]
+  }
 }
 ```
 </details>
