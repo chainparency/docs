@@ -60,8 +60,8 @@ Files are limited to **50 MB**.
 ```sh
 curl -X POST "$GOTRACE_API/v1/orgs/$ORG_ID/events" \
   -H "Authorization: apiKey $API_TOKEN" \
-  --form-string 'json={"event": {"type": "post", "": {"latitude": 41.8781, "longitude": -87.6298}, "note": "text" }}' \
-  --form 'files=@fullPathToFile;filename=pic.png'
+  --form-string 'json={"event": {"type": "post", "location": {"latitude": 41.8781, "longitude": -87.6298}, "text": ""This is a description of the event" }}' \
+  --form 'files=@pic.png;filename=pic.png'
 ```
 
 <details>
