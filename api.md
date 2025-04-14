@@ -27,6 +27,16 @@ Authorization: apiKey $API_KEY
 
 Adds new event to organization feed. Can either be json or multipart/form-data. 
 
+#### Event Types
+
+##### `post`
+
+Adds text/geolocation/files to organization feed.
+
+##### `form`
+
+If you are using custom forms, you can use this post form data. Requires `form_id` and `form_data` fields.
+
 #### Input
 
 ```json
@@ -45,21 +55,13 @@ If multipart/form-data:
 
 Files are limited to **50 MB**.
 
-#### Event Types
-
-##### `post`
-
-Adds text/geolocation/files to organization feed.
-
-##### `form`
-
-Adds form to organization feed. Requires `form_id` and `form_data` fields.
+#### Example
 
 ```sh
 curl -X POST "$GOTRACE_API/v1/orgs/$ORG_ID/events" \
-  -H "Authorization: Bearer $API_TOKEN" \
+  -H "Authorization: apiKey $API_TOKEN" \
   --form-string 'json={"event": {"type": "post", "": {"latitude": 41.8781, "longitude": -87.6298}, "note": "text" }}' \
-  --form '0=@fullPathToFile;filename=pic.png'
+  --form 'files=@fullPathToFile;filename=pic.png'
 ```
 
 <details>
