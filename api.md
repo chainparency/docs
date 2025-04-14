@@ -1,8 +1,16 @@
 # GoTrace API Documentation
 
+## NEW VERSION - v3
+
+We are in the process of providing a new version of our API, version 3. This version will have some backwards incompatible changes. We recommend using v3 
+when it's available to avoid having to make changes in the future.
+
+
 ## URL
 
-Production: `GOTRACE_API=https://gotrace-api.chainparency.com`
+Production: `https://gotrace-api.chainparency.com`
+
+v3 Production: `https://api.chainparency.com`
 
 ## Authorization
 
@@ -10,28 +18,36 @@ Get your API TOKEN from the profile page (menu button on the top right)
 Add the following header to all of your requests:
 
 ```
-Authorization: Bearer $API_TOKEN
+Authorization: apiKey $API_KEY
 ```
 
 ## Organization
 
-### POST new event
+### POST new event - v3
 
-Adds new event to organization feed. Multipart/form-data request that has next keys:
-- 'event' required parameter, that contains json of new event
-- '0' ('1', '2' etc) optional parameters, that contains files to upload/attach to event. Should start from '0' and increment by 1.
-  If any key will be skipped - nex file won't be added. For example: request contains '0', '1', '3', '4' file parts. Only '0' and '1' files will be uploaded.
-  Files are limited to **50 MB**.
+Adds new event to organization feed. Can either be json or multipart/form-data. 
 
-#### File attaching:
-- for every file, needed to be attached add form record (-- form 'key=value')
-- form record 'key' should be number of file (starting from 0)
-- form record 'value' should be full path to file, starting with '@' symbol
-- also file name can be saved, by adding ';filename=initialFileName' to value
+#### Input
+
+```json
+{
+  "event": {
+    "type": "post",
+    "text": "This is some description of the event",
+  }
+}
+```
+
+If multipart/form-data:
+
+- `json` (required) - JSON string matchin the JSON input above.  
+- `files` (optional) - file parts, that contain files to upload/attach to event. Can include `;filename=abc.png` to store filename.
+
+Files are limited to **50 MB**.
 
 #### Event Types
 
-##### `note`
+##### `post`
 
 Adds text/geolocation/files to organization feed.
 
@@ -42,7 +58,7 @@ Adds form to organization feed. Requires `form_id` and `form_data` fields.
 ```sh
 curl -X POST "$GOTRACE_API/v1/orgs/$ORG_ID/events" \
   -H "Authorization: Bearer $API_TOKEN" \
-  --form-string 'event={"type": "note", "geo_point": {"latitude": 41.8781, "longitude": -87.6298}, "note": "text" }' \
+  --form-string 'json={"event": {"type": "post", "geo_point": {"latitude": 41.8781, "longitude": -87.6298}, "note": "text" }}' \
   --form '0=@fullPathToFile;filename=pic.png'
 ```
 
