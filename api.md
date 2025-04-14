@@ -33,7 +33,7 @@ Adds new event to organization feed. Can either be json or multipart/form-data.
 {
   "event": {
     "type": "post",
-    "text": "This is some description of the event",
+    "text": "This is a description of the event",
   }
 }
 ```
@@ -58,7 +58,7 @@ Adds form to organization feed. Requires `form_id` and `form_data` fields.
 ```sh
 curl -X POST "$GOTRACE_API/v1/orgs/$ORG_ID/events" \
   -H "Authorization: Bearer $API_TOKEN" \
-  --form-string 'json={"event": {"type": "post", "geo_point": {"latitude": 41.8781, "longitude": -87.6298}, "note": "text" }}' \
+  --form-string 'json={"event": {"type": "post", "": {"latitude": 41.8781, "longitude": -87.6298}, "note": "text" }}' \
   --form '0=@fullPathToFile;filename=pic.png'
 ```
 
@@ -68,26 +68,27 @@ curl -X POST "$GOTRACE_API/v1/orgs/$ORG_ID/events" \
 ```json
 {
   "event": {
-    "updated_at": "2020-07-15T10:40:08.105771227-05:00",
-    "created_at": "2020-07-15T10:40:08.105771093-05:00",
+    "updatedAt": "2020-07-15T10:40:08.105771227-05:00",
+    "createdAt": "2020-07-15T10:40:08.105771093-05:00",
     "id": "LkiEUtJNndhbbz8qfFQW",
-    "org_id": "eboThjQLWfAd79dvQ05O",
-    "entity_id": "eboThjQLWfAd79dvQ05O",
-    "entity": "org",
-    "deleted_at": null,
-    "type": "note",
-    "geo_point": {
+    "orgID": "eboThjQLWfAd79dvQ05O",
+    "refType": "org",
+    "refID": "abc123",
+    "type": "post",    
+    "text": "This is a description of the event",
+    "location": {
       "latitude": 41.8781,
       "longitude": -87.6298
     },
-    "note": "text",
-    "media": [
-      {
-        "url": "http://some_url/1.png",
-        "type": "image/jpeg",
-        "filename": "pic.png"
-      }
-    ]
+    "data": {
+      "files": [
+        {
+          "url": "http://some_url/1.png",
+          "type": "image/jpeg",
+          "filename": "pic.png"
+        }
+      ]
+    }
   }
 }
 ```
