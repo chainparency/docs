@@ -39,11 +39,14 @@ If you are using custom forms, you can use this post form data. Requires `form_i
 
 #### Input
 
-```json
+```jsonc
 {
   "event": {
     "type": "post",
     "text": "This is a description of the event",
+    "data": { // any custom data
+      "x": "y",
+    }
   }
 }
 ```
