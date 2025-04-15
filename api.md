@@ -1,8 +1,16 @@
 # GoTrace API Documentation
 
+## NEW VERSION - v3
+
+We are in the process of providing a new version of our API, version 3. This version will have some backwards incompatible changes. We recommend using v3 
+when it's available to avoid having to make changes in the future.
+
+
 ## URL
 
-Production: `GOTRACE_API=https://gotrace-api.chainparency.com`
+Production: `https://gotrace-api.chainparency.com`
+
+v3 Production: `https://api.chainparency.com`
 
 ## Authorization
 
@@ -10,40 +18,53 @@ Get your API TOKEN from the profile page (menu button on the top right)
 Add the following header to all of your requests:
 
 ```
-Authorization: Bearer $API_TOKEN
+Authorization: apiKey $API_KEY
 ```
 
 ## Organization
 
-### POST new event
+### POST new event - v3
 
-Adds new event to organization feed. Multipart/form-data request that has next keys:
-- 'event' required parameter, that contains json of new event
-- '0' ('1', '2' etc) optional parameters, that contains files to upload/attach to event. Should start from '0' and increment by 1.
-  If any key will be skipped - nex file won't be added. For example: request contains '0', '1', '3', '4' file parts. Only '0' and '1' files will be uploaded.
-  Files are limited to **50 MB**.
-
-#### File attaching:
-- for every file, needed to be attached add form record (-- form 'key=value')
-- form record 'key' should be number of file (starting from 0)
-- form record 'value' should be full path to file, starting with '@' symbol
-- also file name can be saved, by adding ';filename=initialFileName' to value
+Adds new event to organization feed. Can either be json or multipart/form-data. 
 
 #### Event Types
 
-##### `note`
+##### `post`
 
 Adds text/geolocation/files to organization feed.
 
 ##### `form`
 
-Adds form to organization feed. Requires `form_id` and `form_data` fields.
+If you are using custom forms, you can use this post form data. Requires `form_id` and `form_data` fields.
+
+#### Input
+
+```jsonc
+{
+  "event": {
+    "type": "post",
+    "text": "This is a description of the event",
+    "data": { // any custom data
+      "x": "y",
+    }
+  }
+}
+```
+
+If multipart/form-data:
+
+- `json` (required) - JSON string matchin the JSON input above.  
+- `files` (optional) - file parts, that contain files to upload/attach to event. Can include `;filename=abc.png` to store filename.
+
+Files are limited to **50 MB**.
+
+#### Example
 
 ```sh
 curl -X POST "$GOTRACE_API/v1/orgs/$ORG_ID/events" \
-  -H "Authorization: Bearer $API_TOKEN" \
-  --form-string 'event={"type": "note", "geo_point": {"latitude": 41.8781, "longitude": -87.6298}, "note": "text" }' \
-  --form '0=@fullPathToFile;filename=pic.png'
+  -H "Authorization: apiKey $API_TOKEN" \
+  --form-string 'json={"event": {"type": "post", "location": {"latitude": 41.8781, "longitude": -87.6298}, "text": ""This is a description of the event" }}' \
+  --form 'files=@pic.png;filename=pic.png'
 ```
 
 <details>
@@ -52,26 +73,27 @@ curl -X POST "$GOTRACE_API/v1/orgs/$ORG_ID/events" \
 ```json
 {
   "event": {
-    "updated_at": "2020-07-15T10:40:08.105771227-05:00",
-    "created_at": "2020-07-15T10:40:08.105771093-05:00",
+    "updatedAt": "2020-07-15T10:40:08.105771227-05:00",
+    "createdAt": "2020-07-15T10:40:08.105771093-05:00",
     "id": "LkiEUtJNndhbbz8qfFQW",
-    "org_id": "eboThjQLWfAd79dvQ05O",
-    "entity_id": "eboThjQLWfAd79dvQ05O",
-    "entity": "org",
-    "deleted_at": null,
-    "type": "note",
-    "geo_point": {
+    "orgID": "eboThjQLWfAd79dvQ05O",
+    "refType": "org",
+    "refID": "abc123",
+    "type": "post",    
+    "text": "This is a description of the event",
+    "location": {
       "latitude": 41.8781,
       "longitude": -87.6298
     },
-    "note": "text",
-    "media": [
-      {
-        "url": "http://some_url/1.png",
-        "type": "image/jpeg",
-        "filename": "pic.png"
-      }
-    ]
+    "data": {
+      "files": [
+        {
+          "url": "http://some_url/1.png",
+          "type": "image/jpeg",
+          "filename": "pic.png"
+        }
+      ]
+    }
   }
 }
 ```
