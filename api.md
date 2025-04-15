@@ -73,8 +73,8 @@ curl -X POST "$API_URL/v3/orgs/$ORG_ID/events" \
 ```json
 {
   "event": {
-    "updatedAt": "2020-07-15T10:40:08.105771227-05:00",
-    "createdAt": "2020-07-15T10:40:08.105771093-05:00",
+    "updatedAt": "2020-07-15T10:40:08",
+    "createdAt": "2020-07-15T10:40:08",
     "id": "LkiEUtJNndhbbz8qfFQW",
     "orgID": "eboThjQLWfAd79dvQ05O",
     "refType": "org",
@@ -99,13 +99,13 @@ curl -X POST "$API_URL/v3/orgs/$ORG_ID/events" \
 ```
 </details>
 
-### GET Organization Events by ID
+### GET Organization Events by ID - v3
 
 List events for a organization.
 
 ```sh
-curl "$GOTRACE_API/v1/orgs/$ORG_ID/events" \
-  -H "Authorization: Bearer $API_TOKEN"
+curl "$API_URL/v3/orgs/$ORG_ID/events" \
+  -H "Authorization: apiKey $API_TOKEN"
 ```
 
 <details>
@@ -115,30 +115,27 @@ curl "$GOTRACE_API/v1/orgs/$ORG_ID/events" \
 {
   "events": [
     {
-      "updated_at": "2020-07-15T10:40:08.105771227-05:00",
-      "created_at": "2020-07-15T10:40:08.105771093-05:00",
+      "updatedAt": "2020-07-15T10:40:08",
+      "createdAt": "2020-07-15T10:40:08",
       "id": "LkiEUtJNndhbbz8qfFQW",
-      "org_id": "eboThjQLWfAd79dvQ05O",
-      "entity_id": "eboThjQLWfAd79dvQ05O",
-      "entity": "org",
-      "deleted_at": null,
-      "type": "note",
-      "geo_point": {
+      "orgID": "eboThjQLWfAd79dvQ05O",
+      "refType": "org",
+      "refID": "abc123",
+      "type": "post",    
+      "text": "This is a description of the event",
+      "location": {
         "latitude": 41.8781,
         "longitude": -87.6298
       },
-      "note": "text",
-      "media": [
-        {
-          "url": "http://some_url/1.png",
-          "type": "image/jpeg",
-          "filename": "pic.png"
-        }
-      ],
-      "form_id": "bx3GtRgE90FLi1CeZCif",
-      "form_data": {
-        "first_field": "some text"
-      },
+      "data": {
+        "files": [
+          {
+            "url": "http://some_url/1.png",
+            "type": "image/jpeg",
+            "filename": "pic.png"
+          }
+        ]
+      }
     }
   ]
 }
