@@ -63,7 +63,7 @@ Files are limited to **50 MB**.
 ```sh
 curl -X POST "$API_URL/v3/orgs/$ORG_ID/events" \
   -H "Authorization: apiKey $API_KEY" \
-  --form-string 'json={"event": {"type": "post", "location": {"latitude": 41.8781, "longitude": -87.6298}, "text": ""This is a description of the event" }}' \
+  --form-string 'json={"event": {"type": "post", "location": {"latitude": 41.8781, "longitude": -87.6298}, "text": "This is a description of the event" }}' \
   --form 'files=@pic.png;filename=pic.png'
 ```
 
