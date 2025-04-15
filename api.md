@@ -99,7 +99,7 @@ curl -X POST "$API_URL/v3/orgs/$ORG_ID/events" \
 ```
 </details>
 
-### GET Organization Events by ID - v3
+### GET Organization Events - v3
 
 List events for a organization.
 
