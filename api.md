@@ -2140,78 +2140,109 @@ curl "$GOTRACE_API/v2/orgs/$ORG_ID/locations" \
 ```
 </details>
 
-### POST Location Events (with files)
+### POST Location Events (with files) - v3
 
+Adds new event to a location's feed. Can either be json or multipart/form-data. 
 
-```sh
-curl "$GOTRACE_API/v1/locations/$LOCATION_ID/events" \
-  -H "Authorization: Bearer $API_TOKEN" \
-  -F 0=@photo.png \
-  -F 1=@document.pdf \
-  -F event='{"load_id":"2gcjqFd5pEVNwNhhH9u9","created_by":"p8Ov0RnOO9U1fVRJoa5R8JHcOLm1","org_id":"UEk2tZFKAF1LmkfzgbyA","type":"note","geo_point":{"latitude":41.8781,"longitude":-87.6298}}'
+#### Event Types
+
+##### `post`
+
+Adds text/geolocation/files to feed.
+
+##### `form`
+
+If you are using custom forms, you can use this post form data. 
+
+#### Input
+
+```jsonc
+{
+  "event": {
+    "type": "post",
+    "text": "This is a description of the event",
+    "data": { // any custom data
+      "x": "y",
+    }
+  }
+}
 ```
 
-Data is sent in multipart/form-data format. Event entity is stored in 'event' key as json string. Files are stored in incremented numbers keys (strings that starts from "0"). For example, first file is sotred in 0 key, second - in 1 key, etc. Files are limited by **50 MB**.
+If multipart/form-data:
+
+- `json` (required) - JSON string matchin the JSON input above.  
+- `files` (optional) - file parts, that contain files to upload/attach to event. Can include `;filename=abc.png` to store filename.
+
+Files are limited to **50 MB**.
+
+#### Example
+
+```sh
+curl -X POST "$API_URL/v3/orgs/$ORG_ID/events" \
+  -H "Authorization: apiKey $API_KEY" \
+  --form-string 'json={"event": {"type": "post", "location": {"latitude": 41.8781, "longitude": -87.6298}, "text": "This is a description of the event" }}' \
+  --form 'files=@pic.png;filename=pic.png'
+```
+
+```js
+let fd = new FormData()
+fd.append("json", `{
+  "event": {
+    "type": "post",
+    "text": "This is a description of the event",
+    "location": {"latitude": 44.8781, "longitude": -89.6298}
+    "data": {
+      "hello": "world"
+    }
+  }
+}`)
+// if you want to also add files:
+fd.append("files", new File([fs.readFileSync("./penguin.png")], "penguin.png", { type: "image/png" }))
+
+let r = await fetch(`${apiURL}/v3/orgs/${orgID}/locations/${locationID}/events", {
+  method: "POST",
+  headers: {
+    Authorization: `apiKey ${apiKey}`
+  },
+  body: fd,
+})
+```
 
 <details>
-<summary>Example Response</summary>
+    <summary>Example Response</summary>
 
 ```json
 {
   "event": {
-    "updated_at": "2020-07-20T07:53:17.847251591-05:00",
-    "created_at": "2020-07-20T07:53:16.481100112-05:00",
-    "id": "8pAbKFm28vv1LZ3cCqRO",
-    "created_by": "p8Ov0RnOO9U1fVRJoa5R8JHcOLm1",
-    "org_id": "UEk2tZFKAF1LmkfzgbyA",
-    "entity": "location",
-    "entity_id": "2gcjqFd5pEVNwNhhH9u9",
-    "type": "note",
-    "geo_point": {
-      "latitude": 41.8781,
-      "longitude": -87.6298
+    "updatedAt": "2020-07-15T10:40:08",
+    "createdAt": "2020-07-15T10:40:08",
+    "id": "LkiEUtJNndhbbz8qfFQW",
+    "orgID": "abc123",
+    "refType": "locations",
+    "refID": "xyz123",
+    "type": "post",
+    "text": "This is a description of the event",
+    "location": {
+      "latitude": 44.8781,
+      "longitude": -89.6298
     },
-    "media": [
-      {
-        "url": "https://go-supply-chain.appspot.com.storage.googleapis.com/123432956643768.png",
-        "type": "image/*",
-        "filename": "photo.png",
-      },
-      {
-        "url": "https://go-supply-chain.appspot.com.storage.googleapis.com/123846128364091.pdf",
-        "type": "*.pdf",
-        "filename": "document.pdf",
-      }
-    ]
+    "data": {
+      "files": [
+        {
+          "url": "http://some_url/1.png",
+          "type": "image/png",
+          "name": "penguin.png"
+        }
+      ]
+    }
   }
-}
-```
-</details>
-
-#### Event Types
-
-##### `note`
-
-Event type, that is used to add any additional location info (files, text etc) to location history (location feed). 
-
-##### `form`
-
-Event type, that is used to add custom fields form to location history (location feed). Requires **form_id** and `form_data` fields. **form_id** should contain id of form, which is attached. `form_data` contains fields values, based on form.
-
-<details>
-<summary>Example form_data</summary>
-
-```json
-{
-  "field_1": "value_1",
-  "field_2": "value_2"
 }
 ```
 </details>
 
 ## Events
 
-### GET Event by ID (only for organization/location events)
+### GET Event by ID
 
 ```sh
 curl "$GOTRACE_API/v1/events/$EVENT_ID" \
