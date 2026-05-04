@@ -14,7 +14,7 @@ v3 Production: `https://api.chainparency.com`
 
 > **Authorization Header**
 > Add the following header to all of your requests:
-> `Authorization: apiKey $API_KEY`
+> `Authorization: Bearer $API_TOKEN`
 
 ## Organization
 
@@ -23,8 +23,8 @@ v3 Production: `https://api.chainparency.com`
 List organizations associated with your API key.
 
 ```sh
-curl "https://gotrace-api.chainparency.com/v1/orgs" \
-  -H "Authorization: apiKey $API_KEY"
+curl "$GOTRACE_API/v1/orgs" \
+  -H "Authorization: Bearer $API_TOKEN"
 ```
 
 <details>
@@ -86,7 +86,7 @@ Files are limited to **50 MB**.
 
 ```sh
 curl -X POST "$API_URL/v3/orgs/$ORG_ID/events" \
-  -H "Authorization: apiKey $API_KEY" \
+  -H "Authorization: Bearer $API_TOKEN" \
   --form-string 'json={"event": {"type": "post", "location": {"latitude": 41.8781, "longitude": -87.6298}, "text": "This is a description of the event" }}' \
   --form 'files=@pic.png;filename=pic.png'
 ```
@@ -129,7 +129,7 @@ List events for a organization.
 
 ```sh
 curl "$API_URL/v3/orgs/$ORG_ID/events" \
-  -H "Authorization: apiKey $API_TOKEN"
+  -H "Authorization: Bearer $API_TOKEN"
 ```
 
 <details>
@@ -456,6 +456,7 @@ curl "$GOTRACE_API/v1/orgs/$ORG_ID/loads" \
 | `asset_id` | `string` | - | Filter by a specific asset ID. |
 | `location_id` | `string` | - | Filter by a specific location ID. |
 | `user_id` | `string` | - | Filter by a specific user ID. |
+| `trace_is_public` / `public_traces` | `boolean` | - | Filter by public status of the load traces. |
 
 > **Pagination for high-volume data:**
 > To paginate through a large number of loads, use the `created_at` timestamp of the last item in the previous response as the `created_before` parameter for the next request. Step backwards through time until you have retrieved all desired records.
@@ -2234,7 +2235,7 @@ fd.append("files", new File([fs.readFileSync("./penguin.png")], "penguin.png", {
 let r = await fetch(`${apiURL}/v3/orgs/${orgID}/locations/${locationID}/events", {
   method: "POST",
   headers: {
-    Authorization: `apiKey ${apiKey}`
+    Authorization: `Bearer ${apiToken}`
   },
   body: fd,
 })
