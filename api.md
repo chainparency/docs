@@ -38,8 +38,7 @@ curl "$GOTRACE_API/v1/orgs" \
       "updated_at": "2020-07-15T10:40:08Z",
       "created_at": "2020-07-15T10:40:08Z",
       "name": "Coffee Corp.",
-      "logo": "",
-      "price": "0"
+      "logo": ""
     }
   ]
 }
