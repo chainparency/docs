@@ -12,16 +12,40 @@ Production: `https://gotrace-api.chainparency.com`
 
 v3 Production: `https://api.chainparency.com`
 
-## Authorization
-
-Get your API TOKEN from the profile page (menu button on the top right)
-Add the following header to all of your requests:
-
-```
-Authorization: apiKey $API_KEY
-```
+> **Authorization Header**
+> Add the following header to all of your requests:
+> `Authorization: apiKey $API_KEY`
 
 ## Organization
+
+### GET Organizations
+
+List organizations associated with your API key.
+
+```sh
+curl "https://gotrace-api.chainparency.com/v1/orgs" \
+  -H "Authorization: apiKey $API_KEY"
+```
+
+<details>
+    <summary>Example Response</summary>
+
+```json
+{
+  "orgs": [
+    {
+      "id": "eboThjQLWfAd79dvQ05O",
+      "updated_at": "2020-07-15T10:40:08Z",
+      "created_at": "2020-07-15T10:40:08Z",
+      "name": "Coffee Corp.",
+      "logo": "",
+      "price": "0"
+    }
+  ]
+}
+```
+</details>
+
 
 ### POST new event - v3
 
@@ -422,14 +446,21 @@ curl "$GOTRACE_API/v1/orgs/$ORG_ID/loads" \
 
 #### Query Parameters
 
-- `latest_org boolean`
-- `include_hidden boolean`
-- `created_after datetime`
-- `created_before datetime`
-- `trace_is_public boolean`
-- `asset_id string`
-- `location_id string`
-- `user_id string`
+| Parameter | Type | Default | Description |
+| :--- | :--- | :---: | :--- |
+| `created_after` | `datetime` | - | Filter loads created after this date (ISO 8601, e.g. `2026-04-01T00:00:00Z`). |
+| `created_before` | `datetime` | - | Filter loads created before this date. |
+| `limit` | `int` | 50 | Maximum number of records to return (Max: 500). |
+| `latest_org` | `boolean` | - | Only include loads where the current organization is the latest one. |
+| `include_hidden`| `boolean` | `false` | Include loads that have been marked as hidden. |
+| `asset_id` | `string` | - | Filter by a specific asset ID. |
+| `location_id` | `string` | - | Filter by a specific location ID. |
+| `user_id` | `string` | - | Filter by a specific user ID. |
+
+> **Pagination for high-volume data:**
+> To paginate through a large number of loads, use the `created_at` timestamp of the last item in the previous response as the `created_before` parameter for the next request. Step backwards through time until you have retrieved all desired records.
+
+
 
 * `asset_id`, `location_id`, and `user_id` are exclusive with one another, though each may be included
 multiple times on their own (up to 10).
@@ -1956,8 +1987,14 @@ curl "$GOTRACE_API/v1/orgs/$ORG_ID/locations" \
 
 #### Query Parameters
 
-- `start_at datetime`
-- `limit int`
+| Parameter | Type | Default | Description |
+| :--- | :--- | :---: | :--- |
+| `start_at` | `datetime` | - | Start listing locations from this timestamp. |
+| `limit` | `int` | 50 | Maximum number of locations to return (Max: 500). |
+
+> For more robust pagination (including cursors), it is recommended to use the **v2** locations endpoint documented below.
+
+
 
 <details><summary>Example Response</summary>
 
@@ -2054,8 +2091,10 @@ curl "$GOTRACE_API/v2/orgs/$ORG_ID/locations" \
 
 #### Query Parameters
 
-- `last_id string` last location id
-- `limit int` locations count for pagination (if not passed - set to 50, max - 500) 
+| Parameter | Type | Default | Description |
+| :--- | :--- | :---: | :--- |
+| `last_id` | `string` | - | The ID of the last location from the previous page for cursor-based pagination. |
+| `limit` | `int` | 50 | Locations count for pagination (Max: 500). |
 
 <details><summary>Example Response</summary>
 
